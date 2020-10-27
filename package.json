@@ -8,6 +8,7 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "@syncfusion/ej2-react-schedule": "^18.3.44",
     "firebase": "7.8.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
