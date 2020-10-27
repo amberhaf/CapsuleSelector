@@ -1,0 +1,95 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.navbar {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.timetable {
+  display: block;
+  margin: 0 auto;
+}
+
+#map{
+  width: 50%;
+}
+.timetable {
+  display: block;
+  position:absolute;
+  top:40%;
+  left:10%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+.assignment{
+  position:absolute;
+  top:40%;
+  left:40%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+.setting{
+  position:absolute;
+  top:40%;
+  left:70%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+
+.b{
+  float:right;
+}
+
+#myTable{
+  position: relative;
+  width: 40%;
+  left: 10%;
+  top: 20%;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+#myTable td, #myTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#myTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#myTable td:hover {background-color: #ddd;}
+
+#myTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:#343a40;
+  color: whitesmoke;
+}
