@@ -8,8 +8,8 @@ export default class HomePage extends Component {
       <div>
         <Header />
         <Link to="/timetable"> <button class="timetable">Timetable</button> </Link>
-  <Link to="/assignment"><button class="assignment"> Assignments </button></Link> 
-   <Link to="/map"><button class="setting">Settings</button></Link>
+        <Link to="/assignment"><button class="assignment"> Assignments </button></Link> 
+        <Link to="/map"><button class="setting">Resources</button></Link>
       </div>
     );
   }
