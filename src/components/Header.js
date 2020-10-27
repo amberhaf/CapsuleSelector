@@ -27,7 +27,7 @@ function Header() {
           {auth().currentUser ? (
             <div className="navbar-nav">
               <Link className="nav-item nav-link" to="/profile">
-                Profile
+                Setting
               </Link>
               <button
                 className="btn btn-primary"
