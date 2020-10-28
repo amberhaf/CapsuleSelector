@@ -10,6 +10,7 @@ import Mapping from './pages/Map';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Dashboard from './pages/dashboard';
 import { auth } from './services/firebase';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
@@ -70,6 +71,7 @@ class App extends Component {
           <PrivateRoute path="/timetable" authenticated={this.state.authenticated} component={Timetable}></PrivateRoute>
           <PrivateRoute path="/setting" authenticated={this.state.authenticated} component={Setting}></PrivateRoute>
           <PrivateRoute path="/map" authenticated={this.state.authenticated} component={Mapping}></PrivateRoute>
+          <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
 
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>

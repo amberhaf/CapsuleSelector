@@ -1,4 +1,5 @@
 import firebase from "firebase";
+require('firebase/firestore');
 const config = {
   apiKey: "AIzaSyAL1zJXzrRRfStApML6k4MIqK1dmuz6Gco",
   authDomain: "schedule-dcd0d.firebaseapp.com",
@@ -12,3 +13,26 @@ firebase.initializeApp(config);
 
 export const auth = firebase.auth;
 export const db = firebase.database();
+
+export const storageKey = 'KEY_FOR_LOCAL_STORAGE';
+export const datab = firebase.firestore();
+export const firebaseAuth = firebase.auth;
+export const minTime = new Date();
+minTime.setHours(7, 0, 0);
+export const maxTime = new Date();
+maxTime.setHours(20, 0, 0);
+export const calendarInitialState = {
+  events: [],
+  equipments: [],
+  people: [],
+  modal: {
+    id: null,
+    title: null,
+    desc: null,
+    start: new Date(2018, 4, 4, 7, 0, 0),
+    end: new Date(2018, 4, 4, 8, 0, 0),
+  },
+  modalOpen: false,
+  equipmentsOpen: false,
+  peopleOpen: false,
+}

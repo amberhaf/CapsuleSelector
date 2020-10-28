@@ -7,6 +7,7 @@ export default class HomePage extends Component {
     return (
       <div>
         <Header />
+        <Link to="/dashboard"><button>Proposed timetable</button></Link>
         <Link to="/timetable"> <button class="timetable">Timetable</button> </Link>
         <Link to="/assignment"><button class="assignment"> Assignments </button></Link> 
         <Link to="/map"><button class="setting">Resources</button></Link>
