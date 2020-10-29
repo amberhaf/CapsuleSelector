@@ -23,16 +23,17 @@ export const maxTime = new Date();
 maxTime.setHours(20, 0, 0);
 export const calendarInitialState = {
   events: [],
-  equipments: [],
-  people: [],
+  modules: [],
+  assignment: [],
   modal: {
     id: null,
     title: null,
-    desc: null,
+    code: null,
+    link: null,
     start: new Date(2018, 4, 4, 7, 0, 0),
     end: new Date(2018, 4, 4, 8, 0, 0),
   },
   modalOpen: false,
-  equipmentsOpen: false,
-  peopleOpen: false,
+  modulesOpen: false,
+  assignmentOpen: false,
 }

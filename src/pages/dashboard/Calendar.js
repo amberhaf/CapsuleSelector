@@ -10,17 +10,16 @@ import BigCalendar from 'react-big-calendar'
 import Dialog from 'material-ui/Dialog'
 import Modal from './Modal'
 import Sidebar from './Sidebar'
-import Footer from './Footer'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 //Actions
 import {
   GetEvents,
   UpdateEvents,
-  GetEquipments,
-  UpdateEquipments,
-  GetPeople,
-  UpdatePeople
+  GetModules,
+  UpdateModules,
+  GetAssignment,
+  UpdateAssignment
 } from "../../helpers/db";
 //Styles
 import './styles/dragAndDrop/styles.css'
@@ -44,8 +43,8 @@ class Dnd extends Component {
 
   componentDidMount() {
     const newEvents = []
-    const newEquipments = []
-    const newPeople = []
+    const newModules = []
+    const newAssignment = []
 
     GetEvents(this.props.uid).then(querySnapshot => {
       querySnapshot.forEach(doc => {
@@ -55,23 +54,24 @@ class Dnd extends Component {
         })
       });
     })
-    GetEquipments(this.props.uid).then(querySnapshot => {
+    GetModules(this.props.uid).then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        newEquipments.push(doc.data())
+        newModules.push(doc.data())
         this.setState({
-          equipments: newEquipments,
+          modules: newModules,
         })
       });
     })
-    GetPeople(this.props.uid).then(querySnapshot => {
+    GetAssignment(this.props.uid).then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        newPeople.push(doc.data())
+        newAssignment.push(doc.data())
         this.setState({
-          people: newPeople,
+          assignment: newAssignment,
         })
       });
     })
   }
+
 
   moveEvent({event, start, end}) {
     const {events} = this.state
@@ -124,44 +124,44 @@ class Dnd extends Component {
       console.error('Update error', error);
     });
   }
-  createEquipment = ({title, desc}) => {
-    const {equipments} = this.state
-    const newEquipmentId = uuidV4()
-    const updatedEquipment = {...this.state.modal, id: newEquipmentId, ownerId: this.props.uid, title, desc}
-    const nextEquipments = [...equipments]
-    nextEquipments.push(updatedEquipment)
-    UpdateEquipments(newEquipmentId).set(updatedEquipment).then(
+  createModule = ({title, code, link, type}) => {
+    const {modules} = this.state
+    const newModuleId = uuidV4()
+    const updatedModule = {...this.state.modal, id: newModuleId, ownerId: this.props.uid, title, code, link, type}
+    const nextModules = [...modules]
+    nextModules.push(updatedModule)
+    UpdateModules(newModuleId).set(updatedModule).then(
       this.setState({
-        equipments: nextEquipments,
+        modules: nextModules,
       })
     ).catch(error => {
-      console.error('Create New Equipment error', error);
+      console.error('Create New Module error', error);
     });
   }
-  createPeople = ({title, desc, phone}) => {
-    const {people} = this.state
-    const newPeopleId = uuidV4()
-    const updatedPeople = {...this.state.modal, id: newPeopleId, ownerId: this.props.uid, title, desc, phone}
-    const nextPeople = [...people]
-    nextPeople.push(updatedPeople)
-    UpdatePeople(newPeopleId).set(updatedPeople).then(
+  createAssignment = ({title, code, link, due}) => {
+    const {assignment} = this.state
+    const newAssignmentId = uuidV4()
+    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, due}
+    const nextAssignment = [...assignment]
+    nextAssignment.push(updatedAssignment)
+    UpdateAssignment(newAssignmentId).set(updatedAssignment).then(
       this.setState({
-        people: nextPeople,
+        assignment: nextAssignment,
       })
     ).catch(error => {
-      console.error('Create New People error', error);
+      console.error('Create New Assignment error', error);
     });
   }
-  editEvent = ({id, title, desc}) => {
+  editEvent = ({id, title, code, link}) => {
     const {events} = this.state
 
     const nextEvents = events.map(existingEvent => {
       return existingEvent.id === id
-        ? {...existingEvent, title, desc}
+        ? {...existingEvent, title, code, link}
         : existingEvent
     })
 
-    UpdateEvents(id).update({title, desc}).then(
+    UpdateEvents(id).update({title, code, link}).then(
       this.setState({
         events: nextEvents,
       })
@@ -169,36 +169,36 @@ class Dnd extends Component {
       console.error('Update Event error', error);
     });
   }
-  editEquipment = ({id, title, desc}) => {
-    const {equipments} = this.state
+  editModule = ({id, title, code, link, type}) => {
+    const {modules} = this.state
 
-    const nextEquipments = equipments.map(existingEquipment => {
-      return existingEquipment.id === id
-        ? {...existingEquipment, title, desc}
-        : existingEquipment
+    const nextModules = modules.map(existingModule => {
+      return existingModule.id === id
+        ? {...existingModule, title, code, link, type}
+        : existingModule
     })
-    UpdateEquipments(id).update({title, desc}).then(
+    UpdateModules(id).update({title, code, link, type}).then(
       this.setState({
-        equipments: nextEquipments,
+        modules: nextModules,
       })
     ).catch(error => {
-      console.error('Update Equipment error', error);
+      console.error('Update Module error', error);
     });
   }
-  editPeople = ({id, title, desc, phone}) => {
-    const {people} = this.state
+  editAssignment = ({id, title, code, link, due}) => {
+    const {assignment} = this.state 
 
-    const nextPeople = people.map(existingPeople => {
-      return existingPeople.id === id
-        ? {...existingPeople, title, desc}
-        : existingPeople
+    const nextAssignment = assignment.map(existingAssignment => {
+      return existingAssignment.id === id
+        ? {...existingAssignment, title, code, link, due}
+        : existingAssignment
     })
-    UpdatePeople(id).update({title, desc, phone}).then(
+    UpdateAssignment(id).update({title, code, link, due}).then(
       this.setState({
-        people: nextPeople,
+        assignment: nextAssignment,
       })
     ).catch(error => {
-      console.error('Update Equipment error', error);
+      console.error('Update Module error', error);
     });
   }
   deleteEvent = ({id}) => {
@@ -216,31 +216,31 @@ class Dnd extends Component {
       console.error('Delete Event error', error);
     });
   }
-  deleteEquipment = ({id}) => {
-    const {equipments} = this.state
+  deleteModule = ({id}) => {
+    const {modules} = this.state
 
-    const nextEquipments = equipments.filter(existingEquipment => {
-      return existingEquipment.id !== id
+    const nextModules = modules.filter(existingModule => {
+      return existingModule.id !== id
     })
 
-    UpdateEquipments(id).delete().then(
+    UpdateModules(id).delete().then(
       this.setState({
-        equipments: nextEquipments,
+        modules: nextModules,
       })
     ).catch(error => {
       console.error('Delete error', error);
     });
   }
-  deletePeople = ({id}) => {
-    const {people} = this.state
+  deleteAssignment = ({id}) => {
+    const {assignment} = this.state
 
-    const nextPeople = people.filter(existingPeople => {
-      return existingPeople.id !== id
+    const nextAssignment = assignment.filter(existingAssignment => {
+      return existingAssignment.id !== id
     })
 
-    UpdatePeople(id).delete().then(
+    UpdateAssignment(id).delete().then(
       this.setState({
-        people: nextPeople,
+        assignment: nextAssignment,
       })
     ).catch(error => {
       console.error('Delete error', error);
@@ -249,8 +249,8 @@ class Dnd extends Component {
   handleClose = () => {
     this.setState({
       modalOpen: false,
-      equipmentsOpen: false,
-      peopleOpen: false,
+      modulesOpen: false,
+      assignmentOpen: false,
       modal: calendarInitialState.modal,
     });
   };
@@ -260,16 +260,16 @@ class Dnd extends Component {
       modal: event,
     });
   };
-  handleEquipments = (event) => {
+  handleModules = (event) => {
     this.setState({
-      modal: event ? event : this.state.modal,
-      equipmentsOpen: true
+      modal: event ? event : {...this.state.modal, type: null},
+      modulesOpen: true
     });
   }
-  handlePeople = (event) => {
+  handleAssignment = (event) => {
     this.setState({
-      modal: event ? event : {...this.state.modal, phone: null},
-      peopleOpen: true
+      modal: event ? event : {...this.state.modal, due: null},
+      assignmentOpen: true
     });
   }
 
@@ -278,16 +278,16 @@ class Dnd extends Component {
       return (
         <div className={'row'}>
           <div className={'col-2'}>
-            Equipments:
+            Modules:
             <FloatingActionButton
               mini={true}
               className={'m-2'}
-              onClick={() => this.handleEquipments()}
+              onClick={() => this.handleModules()}
             >
               <ContentAdd />
             </FloatingActionButton>
-            <Sidebar events={this.state.equipments}
-                     onClickEvent={this.handleEquipments}
+            <Sidebar events={this.state.modules}
+                     onClickEvent={this.handleModules}
             />
           </div>
           <div style={{height: 500}} className={'col-8'}>
@@ -304,7 +304,7 @@ class Dnd extends Component {
               min={minTime}
               max={maxTime}
             />
-            <Dialog title="Task"
+            <Dialog title="Class"
                     modal={false}
                     open={this.state.modalOpen}
                     onRequestClose={this.handleClose}
@@ -314,56 +314,53 @@ class Dnd extends Component {
                      onRequestClose={this.handleClose}
                      onEditEvent={this.editEvent}
                      onDeleteEvent={this.deleteEvent}
-
               />
             </Dialog>
-            <Dialog title="Equipments"
+            <Dialog title="Modules"
                     modal={false}
-                    open={this.state.equipmentsOpen}
+                    open={this.state.modulesOpen}
                     onRequestClose={this.handleClose}
                     autoScrollBodyContent={true}
             >
               <Modal event={this.state.modal}
                      onRequestClose={this.handleClose}
-                     onCreatEvent={this.createEquipment}
-                     onEditEvent={this.editEquipment}
-                     onDeleteEvent={this.deleteEquipment}
+                     onCreatEvent={this.createModule}
+                     onEditEvent={this.editModule}
+                     onDeleteEvent={this.deleteModule}
               />
             </Dialog>
-            <Dialog title="People"
+            <Dialog title="Assignment"
                     modal={false}
-                    open={this.state.peopleOpen}
+                    open={this.state.assignmentOpen}
                     onRequestClose={this.handleClose}
                     autoScrollBodyContent={true}
             >
               <Modal event={this.state.modal}
                      onRequestClose={this.handleClose}
-                     onCreatEvent={this.createPeople}
-                     onEditEvent={this.editPeople}
-                     onDeleteEvent={this.deletePeople}
+                     onCreatEvent={this.createAssignment}
+                     onEditEvent={this.editAssignment}
+                     onDeleteEvent={this.deleteAssignment}
               />
             </Dialog>
           </div>
           <div className={'col-2'}>
-            People:
+            Assignment:
             <div>
               <FloatingActionButton
                 mini={true}
                 className={'m-2'}
-                onClick={() => this.handlePeople()}
+                onClick={() => this.handleAssignment()}
               >
                 <ContentAdd />
               </FloatingActionButton>
             </div>
-            <Sidebar events={this.state.people}
-                     onClickEvent={this.handlePeople}
+            <Sidebar events={this.state.assignment}
+                     onClickEvent={this.handleAssignment}
             />
           </div>
-          <Footer selectedEvents={this.state.events} />
         </div>
       )
     }
-
   }
 }
 

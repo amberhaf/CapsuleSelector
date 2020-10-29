@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from "react-router-dom";
 
 
 export default class Modal extends React.Component {
@@ -41,6 +42,9 @@ export default class Modal extends React.Component {
           secondary={true}
           onClick={this.handleDelete}
         />
+         <RaisedButton className={this.props.event.title ? '' : 'd-none'}>
+          <a target="_blank" href={this.props.event.link}>Go to class</a>
+          </RaisedButton>
         <div>
           <TextField
             defaultValue={this.state.event.title}
@@ -48,16 +52,25 @@ export default class Modal extends React.Component {
             onChange={(event, newValue) => this.setState({event: {...this.state.event, title: newValue}})}
           />
           <TextField
-            defaultValue={this.state.event.desc}
-            floatingLabelText="Description"
-            onChange={(event, newValue) => this.setState({event: {...this.state.event, desc: newValue}})}
+            defaultValue={this.state.event.code}
+            floatingLabelText="Module Code"
+            onChange={(event, newValue) => this.setState({event: {...this.state.event, code: newValue}})}
           />
-          {'phone' in this.state.event ? <TextField
-            defaultValue={this.state.event.phone}
-            floatingLabelText="Phone"
-            onChange={(event, newValue) => this.setState({event: {...this.state.event, phone: newValue}})}
+          <TextField
+            defaultValue={this.state.event.link}
+            floatingLabelText="Link to Class"
+            onChange={(event, newValue) => this.setState({event: {...this.state.event, link: newValue}})}
+          />
+          {'type' in this.state.event ? <TextField
+            defaultValue={this.state.event.type}
+            floatingLabelText="Class type"
+            onChange={(event, newValue) => this.setState({event: {...this.state.event, type: newValue}})}
           /> : ''}
-
+          {'due' in this.state.event ? <TextField
+            defaultValue={this.state.event.due}
+            floatingLabelText="Due Date"
+            onChange={(event, newValue) => this.setState({event: {...this.state.event, due: newValue}})}
+          /> : ''}
         </div>
         <div>
           <RaisedButton
