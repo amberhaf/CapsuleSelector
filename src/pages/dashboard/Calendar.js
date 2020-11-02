@@ -22,9 +22,9 @@ import {
   UpdateAssignment
 } from "../../helpers/db";
 //Styles
-import './styles/dragAndDrop/styles.css'
-import './styles/less/styles.css'
-import './styles/css/react-big-calendar.css'
+import './styles/dragAndDrop.css'
+//import './styles/less.css'
+import './styles/react-big-calendar.css'
 
 
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
@@ -138,10 +138,10 @@ class Dnd extends Component {
       console.error('Create New Module error', error);
     });
   }
-  createAssignment = ({title, code, link, due}) => {
+  createAssignment = ({title, code, link, type, deadline, due}) => {
     const {assignment} = this.state
     const newAssignmentId = uuidV4()
-    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, due}
+    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, type, deadline, due}
     const nextAssignment = [...assignment]
     nextAssignment.push(updatedAssignment)
     UpdateAssignment(newAssignmentId).set(updatedAssignment).then(
@@ -152,16 +152,16 @@ class Dnd extends Component {
       console.error('Create New Assignment error', error);
     });
   }
-  editEvent = ({id, title, code, link}) => {
+  editEvent = ({id, title, code, link, type, due}) => {
     const {events} = this.state
 
     const nextEvents = events.map(existingEvent => {
       return existingEvent.id === id
-        ? {...existingEvent, title, code, link}
+        ? {...existingEvent, title, code, link, type, due}
         : existingEvent
     })
 
-    UpdateEvents(id).update({title, code, link}).then(
+    UpdateEvents(id).update({title, code, link, type, due}).then(
       this.setState({
         events: nextEvents,
       })
@@ -185,15 +185,15 @@ class Dnd extends Component {
       console.error('Update Module error', error);
     });
   }
-  editAssignment = ({id, title, code, link, due}) => {
+  editAssignment = ({id, title, code, link, type, deadline, due}) => {
     const {assignment} = this.state 
 
     const nextAssignment = assignment.map(existingAssignment => {
       return existingAssignment.id === id
-        ? {...existingAssignment, title, code, link, due}
+        ? {...existingAssignment, title, code, link, type, deadline, due}
         : existingAssignment
     })
-    UpdateAssignment(id).update({title, code, link, due}).then(
+    UpdateAssignment(id).update({title, code, link, type, deadline, due}).then(
       this.setState({
         assignment: nextAssignment,
       })
@@ -262,13 +262,13 @@ class Dnd extends Component {
   };
   handleModules = (event) => {
     this.setState({
-      modal: event ? event : {...this.state.modal, type: null},
+      modal: event ? event : {...this.state.modal},
       modulesOpen: true
     });
   }
   handleAssignment = (event) => {
     this.setState({
-      modal: event ? event : {...this.state.modal, due: null},
+      modal: event ? event : {...this.state.modal, deadline: null},
       assignmentOpen: true
     });
   }
@@ -344,7 +344,7 @@ class Dnd extends Component {
             </Dialog>
           </div>
           <div className={'col-2'}>
-            Assignment:
+            Deadlines:
             <div>
               <FloatingActionButton
                 mini={true}

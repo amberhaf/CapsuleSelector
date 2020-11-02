@@ -61,14 +61,19 @@ export default class Modal extends React.Component {
             floatingLabelText="Link to Class"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, link: newValue}})}
           />
-          {'type' in this.state.event ? <TextField
+          {!('deadline' in this.state.event) ? <TextField
             defaultValue={this.state.event.type}
             floatingLabelText="Class type"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, type: newValue}})}
           /> : ''}
-          {'due' in this.state.event ? <TextField
+          {'deadline' in this.state.event ? <TextField
+            defaultValue={this.state.event.type}
+            floatingLabelText="Deadline type"
+            onChange={(event, newValue) => this.setState({event: {...this.state.event, type: newValue}})}
+          /> : ''}
+          {'deadline' in this.state.event ? <TextField
             defaultValue={this.state.event.due}
-            floatingLabelText="Due Date"
+            floatingLabelText="Due date"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, due: newValue}})}
           /> : ''}
         </div>

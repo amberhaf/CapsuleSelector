@@ -30,6 +30,8 @@ export const calendarInitialState = {
     title: null,
     code: null,
     link: null,
+    type: null,
+    due: null,
     start: new Date(2018, 4, 4, 7, 0, 0),
     end: new Date(2018, 4, 4, 8, 0, 0),
   },
