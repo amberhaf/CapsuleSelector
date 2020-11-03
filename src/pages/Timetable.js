@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
-import Time from "./time";
 import { auth, db } from "../services/firebase";
 import { Link } from "react-router-dom";
 
@@ -106,8 +105,7 @@ export default class Timetable extends Component {
       <div>
         <Header />
         <h2> Timetable </h2>
-        <Link to="/assignment" className="b"><button> Assignments </button></Link>        
-        <Time /> 
+        <Link to="/assignment" className="b"><button> Assignments </button></Link>          
         {this.state.timetables.map(timetable => {
           return (
             <div key={timetable.timetable_id} className="card card-body shadow-sm m-4">

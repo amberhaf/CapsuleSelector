@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
-import { auth, db } from "../services/firebase";
+import { auth, /*db*/ } from "../services/firebase";
 
 export default class Profile extends Component {
   constructor() {
