@@ -128,7 +128,7 @@ code {
   top:20%;
   left:60%;
   width:15%;
-  height: 30%;
+  height: auto;
   cursor: pointer;
 }
 .Moodlebut{
@@ -137,7 +137,7 @@ code {
   top:20%;
   left:30%;
   width:15%;
-  height: 30%;
+  height: auto;
   cursor: pointer;
 }
 .Coronabut{
@@ -145,7 +145,7 @@ code {
   top:60%;
   left:60%;
   width:15%;
-  height: 30%;
+  height: auto;
   cursor: pointer;
 }
 
@@ -154,6 +154,6 @@ code {
   top:60%;
   left:30%;
   width:15%;
-  height: 30%;
+  height: auto;
   cursor: pointer;
 }
