@@ -4,7 +4,6 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import Assignment from './pages/Assignment';
-import Timetable from './pages/Timetable';
 import Setting from './pages/Setting';
 import Mapping from './pages/Map';
 import Profile from './pages/Profile';
@@ -69,7 +68,7 @@ class App extends Component {
           <Route exact path="/" component={Home}></Route>
           <PrivateRoute path="/profile" authenticated={this.state.authenticated} component={Profile}></PrivateRoute>
           <PrivateRoute path="/assignment" authenticated={this.state.authenticated} component={Assignment}></PrivateRoute>
-          <PrivateRoute path="/timetable" authenticated={this.state.authenticated} component={Timetable}></PrivateRoute>
+          <PrivateRoute path="/timetable" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
           <PrivateRoute path="/setting" authenticated={this.state.authenticated} component={Setting}></PrivateRoute>
           <PrivateRoute path="/map" authenticated={this.state.authenticated} component={Mapping}></PrivateRoute>
           <PrivateRoute path="/resources" authenticated={this.state.authenticated} component={Resources}></PrivateRoute>
