@@ -4,6 +4,7 @@ import Time from "./time";
 import { auth, db } from "../services/firebase";
 import { Link } from "react-router-dom";
 
+
 export default class Timetable extends Component {
   constructor() {
     super();

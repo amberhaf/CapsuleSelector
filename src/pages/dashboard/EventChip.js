@@ -10,7 +10,6 @@ let eventSource = {
   beginDrag(props) {
     return Object.assign({},
       {event: props.event},
-
       {anchor: 'drop'}
     )
   }

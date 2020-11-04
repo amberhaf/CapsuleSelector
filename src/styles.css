@@ -93,3 +93,67 @@ code {
   background-color:#343a40;
   color: whitesmoke;
 }
+
+.assignment{
+  position:absolute;
+  top:40%;
+  left:40%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+.setting{
+  position:absolute;
+  top:40%;
+  left:70%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+
+.resources{
+  position:absolute;
+  top:40%;
+  left:70%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+
+.b{
+  float:right;
+}
+.Mapbut{
+  position:absolute;
+  top:20%;
+  left:60%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+.Moodlebut{
+  display: block;
+  position:absolute;
+  top:20%;
+  left:30%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+.Coronabut{
+  position:absolute;
+  top:60%;
+  left:60%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
+
+.Librarybut{
+  position:absolute;
+  top:60%;
+  left:30%;
+  width:15%;
+  height: 30%;
+  cursor: pointer;
+}
