@@ -8,11 +8,11 @@ const Resources = () => (
     <h1 >Resources</h1>
     <div ></div>
       
-    <Link to="/Map"><button class="Map" class = "Mapbut"> Map </button></Link>
-  <a target="_blank" href="https://www.maynoothuniversity.ie/moodle"><button class = "Moodlebut"> Moodle </button></a>
+    <Link to="/Map"><input class="Map" class = "Mapbut" type="image" src="../Image/002-map.png" alt="Map"></input></Link>
+  <a target="_blank" href="https://www.maynoothuniversity.ie/moodle"><input class="Moodlebut" type="image" src="../Image/moodle.png" alt="Moodle" ></input></a>
   <div></div>
- <a target="_blank" href="https://www.maynoothuniversity.ie/library"><button class = "Librarybut"> Library </button></a>
- <a target="_blank" href="https://www.maynoothuniversity.ie/coronavirus"><button class = "Coronabut"> Corona Info </button></a>
+ <a target="_blank" href="https://www.maynoothuniversity.ie/library"><input class = "Librarybut" type="image" src="../Image/019-cloud library.png" alt="Library"></input></a>
+ <a target="_blank" href="https://www.maynoothuniversity.ie/coronavirus"><input class = "Coronabut" type="image" src="../Image/soap.png" alt="Corona Info"></input></a>
   <div></div>
     </div>
 );
