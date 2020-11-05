@@ -76,36 +76,57 @@ class Dnd extends Component {
   moveEvent({event, start, end}) {
     const {events} = this.state
     const idx = events.indexOf(event)
-    let updatedEvent = {...event, start, end}
+    start = new Date(start);
+    end = new Date(end);
+    var family =[]
+    let updatedEvent = {...event, start, end, family}
     const nextEvents = [...events]
-    var newStart = new Date(start);
-    newStart=newStart.setDate(newStart.getDate() + 7);
-    var newEnd = new Date(end);
-    newEnd=newEnd.setDate(newEnd.getDate() + 7);
-    alert("start Time" +start+ "end Time" + end 
-    +"\n" +"new start"+new Date(newStart)+ "new end" + new Date(newEnd));
+    //alert("start Time" +start+ "end Time" + end 
+    //+"\n" +"new start"+new Date(newStart)+ "new end" + new Date(newEnd));
     if (idx > -1) {
+      for(var i=0; i<4; i++)
+      {
+        var id=event.family[i];
+
       nextEvents.splice(idx, 1, updatedEvent)
-      UpdateEvents(event.id).update({start, end}).then(
+      UpdateEvents(id).update({start, end, family}).then(
         this.setState({
           events: nextEvents,
         })
       ).catch(error => {
         console.error('Update error', error);
       });
+      start=start.setDate(start.getDate() + 7);
+      start = new Date(start);
+      end=end.setDate(end.getDate() + 7);
+      end = new Date(end);
+      }
     }
     else {
-      const newEventId = uuidV4()
-      updatedEvent = {...updatedEvent, id: newEventId, ownerId: this.props.uid}
-      console.log(updatedEvent)
-      nextEvents.push(updatedEvent)
-      UpdateEvents(newEventId).set(updatedEvent).then(
-        this.setState({
-          events: nextEvents,
-        })
-      ).catch(error => {
-        console.error('Create New Event error', error);
-      });
+      for(var i=0; i<4; i++)
+      {
+        const newEventId=uuidV4();
+        family[i]= newEventId;
+      }
+      for(var i=0; i<4; i++)
+      {
+        const newEventId=family[i];
+        updatedEvent = {...event, start, end, family}
+        updatedEvent = {...updatedEvent, id: newEventId, ownerId: this.props.uid}
+        console.log(updatedEvent)
+        nextEvents.push(updatedEvent)
+        UpdateEvents(newEventId).set(updatedEvent).then(
+          this.setState({
+            events: nextEvents,
+          })
+        ).catch(error => {
+          console.error('Create New Event error', error);
+        });
+        start=start.setDate(start.getDate() + 7);
+        start = new Date(start);
+        end=end.setDate(end.getDate() + 7);
+        end = new Date(end);
+      }
     }
   }
 
