@@ -13,6 +13,7 @@ import Dashboard from './pages/dashboard';
 import Timetable from './pages/Timetable';
 import Resources from './pages/Resources';
 import { auth } from './services/firebase';
+import { Forgot } from './pages/Forgot';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -75,6 +76,7 @@ class App extends Component {
           <PrivateRoute path="/resources" authenticated={this.state.authenticated} component={Resources}></PrivateRoute>
           <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
 
+          <Route exact path = "/forgot" component={Forgot}></Route>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
         </Switch>

@@ -99,7 +99,7 @@ code {
   top:40%;
   left:40%;
   width:15%;
-  height: 30%;
+  height: auto;
   cursor: pointer;
 }
 .setting{
@@ -107,7 +107,7 @@ code {
   top:40%;
   left:70%;
   width:15%;
-  height: 30%;
+  height: auto;
   cursor: pointer;
 }
 
@@ -116,7 +116,7 @@ code {
   top:40%;
   left:70%;
   width:15%;
-  height: 30%;
+  height: auto;
   cursor: pointer;
 }
 
