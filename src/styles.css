@@ -65,6 +65,16 @@ code {
   cursor: pointer;
 }
 
+.settingButton{
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size:140%;
+  border: 1px solid;
+  margin:auto;
+  width:15%;
+  padding:2%;
+  margin-top:5%;
+}
+
 .b{
   float:right;
 }
