@@ -82,9 +82,7 @@ class Dnd extends Component {
     newStart=newStart.setDate(newStart.getDate() + 7);
     var newEnd = new Date(end);
     newEnd=newEnd.setDate(newEnd.getDate() + 7);
-    alert("start Time" +start+ "end Time" + end 
-    +"\n" +"new start"+new Date(newStart)+ "new end" + new Date(newEnd));
-    if (idx > -1) {
+      if (idx > -1) {
       nextEvents.splice(idx, 1, updatedEvent)
       UpdateEvents(event.id).update({start, end}).then(
         this.setState({
