@@ -1,5 +1,8 @@
 import { datab } from '../services/firebase';
 
+export function GetEvent(id) {
+  return datab.collection('events').where('id','==',id).get();
+}
 export function GetEvents(uid) {
   return datab.collection('events').where('ownerId','==',uid).get();
 }

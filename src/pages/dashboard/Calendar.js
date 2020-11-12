@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { datab } from '../../services/firebase'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
@@ -14,6 +15,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 //Actions
 import {
+  GetEvent,
   GetEvents,
   UpdateEvents,
   GetModules,
@@ -71,40 +73,74 @@ class Dnd extends Component {
       });
     })
   }
-
+  refreshPage() {
+    window.location.reload(false);
+  }
 
   moveEvent({event, start, end}) {
     const {events} = this.state
     const idx = events.indexOf(event)
-    let updatedEvent = {...event, start, end}
+    start = new Date(start);
+    end = new Date(end);
+    var family =[]
+    let updatedEvent = {...event, start, end, family}
     const nextEvents = [...events]
-    var newStart = new Date(start);
-    newStart=newStart.setDate(newStart.getDate() + 7);
-    var newEnd = new Date(end);
-    newEnd=newEnd.setDate(newEnd.getDate() + 7);
       if (idx > -1) {
+        family=event.family;
+        var id=family[0];
+        var index = family.indexOf(event.id);
+        start=new Date(start.setDate(start.getDate() - (index*7)));
+        end=new Date(end.setDate(end.getDate() - (index*7)));
+
+      for(var i=0; i<4; i++)
+      {
+        var id=event.family[i];
       nextEvents.splice(idx, 1, updatedEvent)
-      UpdateEvents(event.id).update({start, end}).then(
+      UpdateEvents(id).update({start, end, family}).then(
         this.setState({
           events: nextEvents,
         })
       ).catch(error => {
         console.error('Update error', error);
       });
+      start=start.setDate(start.getDate() + 7);
+      start = new Date(start);
+      end=end.setDate(end.getDate() + 7);
+      end = new Date(end);
+      }
     }
     else {
-      const newEventId = uuidV4()
-      updatedEvent = {...updatedEvent, id: newEventId, ownerId: this.props.uid}
-      console.log(updatedEvent)
-      nextEvents.push(updatedEvent)
-      UpdateEvents(newEventId).set(updatedEvent).then(
-        this.setState({
-          events: nextEvents,
-        })
-      ).catch(error => {
-        console.error('Create New Event error', error);
-      });
+      for(var i=0; i<4; i++)
+      {
+        const newEventId=uuidV4();
+        family[i]= newEventId;
+      }
+      for(var i=0; i<4; i++)
+      {
+        const newEventId=family[i];
+        updatedEvent = {...event, start, end, family}
+        updatedEvent = {...updatedEvent, id: newEventId, ownerId: this.props.uid}
+        console.log(updatedEvent)
+        nextEvents.push(updatedEvent)
+        UpdateEvents(newEventId).set(updatedEvent).then(
+          this.setState({
+            events: nextEvents,
+          })
+        ).catch(error => {
+          console.error('Create New Event error', error);
+        });
+        start=start.setDate(start.getDate() + 7);
+        start = new Date(start);
+        end=end.setDate(end.getDate() + 7);
+        end = new Date(end);
+      }
     }
+    setInterval(myTimer, 2000);
+
+function myTimer() {
+  window.location.reload(false)
+}
+
   }
 
   selectEvent = (event) => {
@@ -113,21 +149,46 @@ class Dnd extends Component {
 
   resizeEvent = (resizeType, {event, start, end}) => {
     const {events} = this.state
-
-    const nextEvents = events.map(existingEvent => {
-      return existingEvent.id === event.id
-        ? {...existingEvent, start, end}
-        : existingEvent
-    })
-
-    UpdateEvents(event.id).update({start, end}).then(
-      this.setState({
-        events: nextEvents,
+    var family=event.family;
+    var id=family[0];
+    var index = family.indexOf(event.id);
+    start=new Date(start.setDate(start.getDate() - (index*7)));
+    end=new Date(end.setDate(end.getDate() - (index*7)));
+    /*
+      const nextEvents = events.map(existingEvent => {
+        return existingEvent.id === event.id
+          ? {...existingEvent, start, end}
+          : existingEvent
       })
-    ).catch(error => {
-      console.error('Update error', error);
-    });
+      UpdateEvents(event.id).update({start, end}).then(
+        this.setState({
+          events: nextEvents,
+        })
+      ).catch(error => {
+        console.error('Update error', error);
+      }); */
+    for(var i=0; i<4; i++)
+    {
+      id=family[i];
+      const nextEvents = events.map(existingEvent => {
+        return existingEvent.id === id
+          ? {...existingEvent, start, end}
+          : existingEvent
+      })
+      UpdateEvents(id).update({start, end}).then(
+        this.setState({
+          events: nextEvents,
+        })
+      ).catch(error => {
+        console.error('Update error', error);
+      });
+      start=start.setDate(start.getDate() + 7);
+      start = new Date(start);
+      end=end.setDate(end.getDate() + 7);
+      end = new Date(end);
+    }
   }
+
   createModule = ({title, code, link, type}) => {
     const {modules} = this.state
     const newModuleId = uuidV4()
@@ -207,11 +268,21 @@ class Dnd extends Component {
   }
   deleteEvent = ({id}) => {
     const {events} = this.state
-
-    const nextEvents = events.filter(existingEvent => {
+    var family=[]
+    for(var j=0; j<events.length; j++)
+    {
+      if(events[j].id==id)
+      {
+        family=events[j].family;
+      }
+    }
+    console.log(family);
+    for(var i=0; i<4; i++)
+    {
+      id=family[i];
+      const nextEvents = events.filter(existingEvent => {
       return existingEvent.id !== id
     })
-
     UpdateEvents(id).delete().then(
       this.setState({
         events: nextEvents,
@@ -219,6 +290,7 @@ class Dnd extends Component {
     ).catch(error => {
       console.error('Delete Event error', error);
     });
+    }
   }
   deleteModule = ({id}) => {
     const {modules} = this.state
