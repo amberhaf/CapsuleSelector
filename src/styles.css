@@ -121,6 +121,10 @@ code {
   cursor: pointer;
 }
 
+.back{
+  width: 2%;
+}
+
 .resources{
   position:absolute;
   top:40%;
