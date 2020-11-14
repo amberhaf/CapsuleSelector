@@ -76,6 +76,12 @@ export default class Modal extends React.Component {
             floatingLabelText="Due date"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, due: newValue}})}
           /> : ''}
+           {!('deadline' in this.state.event) ? <TextField
+            className={this.props.event.title ? 'd-none mr-3 my-3' : 'mr-3 my-3'}
+            defaultValue={this.state.event.repeat}
+            floatingLabelText="Repeat for"
+            onChange={(event, newValue) => this.setState({event: {...this.state.event, repeat: newValue}})}
+          />: ''}
         </div>
         <div>
           <RaisedButton

@@ -27,6 +27,7 @@ import {
 import './styles/dragAndDrop.css'
 //import './styles/less.css'
 import './styles/react-big-calendar.css'
+import Events from 'material-ui/utils/events'
 
 
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
@@ -39,7 +40,6 @@ class Dnd extends Component {
     super(props)
 
     this.state = calendarInitialState
-
     this.moveEvent = this.moveEvent.bind(this)
   }
 
@@ -83,7 +83,7 @@ class Dnd extends Component {
     start = new Date(start);
     end = new Date(end);
     var family =[]
-    let updatedEvent = {...event, start, end, family}
+    let updatedEvent = {...event, start, end}
     const nextEvents = [...events]
       if (idx > -1) {
         family=event.family;
@@ -92,10 +92,10 @@ class Dnd extends Component {
         start=new Date(start.setDate(start.getDate() - (index*7)));
         end=new Date(end.setDate(end.getDate() - (index*7)));
 
-      for(var i=0; i<4; i++)
+      for(var i=0; i<family.length; i++)
       {
         var id=event.family[i];
-      nextEvents.splice(idx, 1, updatedEvent)
+         nextEvents.splice(idx, 1, updatedEvent)
       UpdateEvents(id).update({start, end, family}).then(
         this.setState({
           events: nextEvents,
@@ -110,12 +110,13 @@ class Dnd extends Component {
       }
     }
     else {
-      for(var i=0; i<4; i++)
+      var rep=event.repeat;
+      for(var i=0; i<rep; i++)
       {
         const newEventId=uuidV4();
         family[i]= newEventId;
       }
-      for(var i=0; i<4; i++)
+      for(var i=0; i<family.length; i++)
       {
         const newEventId=family[i];
         updatedEvent = {...event, start, end, family}
@@ -135,12 +136,15 @@ class Dnd extends Component {
         end = new Date(end);
       }
     }
-    setInterval(myTimer, 2000);
-
-function myTimer() {
-  window.location.reload(false)
-}
-
+    const newEvents = []
+    GetEvents(event.ownerId).then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        newEvents.push(doc.data())
+        this.setState({
+          events: newEvents
+        })
+      });
+    })
   }
 
   selectEvent = (event) => {
@@ -154,27 +158,15 @@ function myTimer() {
     var index = family.indexOf(event.id);
     start=new Date(start.setDate(start.getDate() - (index*7)));
     end=new Date(end.setDate(end.getDate() - (index*7)));
-    /*
+    
       const nextEvents = events.map(existingEvent => {
         return existingEvent.id === event.id
           ? {...existingEvent, start, end}
           : existingEvent
       })
-      UpdateEvents(event.id).update({start, end}).then(
-        this.setState({
-          events: nextEvents,
-        })
-      ).catch(error => {
-        console.error('Update error', error);
-      }); */
-    for(var i=0; i<4; i++)
+    for(var i=0; i<family.length; i++)
     {
       id=family[i];
-      const nextEvents = events.map(existingEvent => {
-        return existingEvent.id === id
-          ? {...existingEvent, start, end}
-          : existingEvent
-      })
       UpdateEvents(id).update({start, end}).then(
         this.setState({
           events: nextEvents,
@@ -187,12 +179,21 @@ function myTimer() {
       end=end.setDate(end.getDate() + 7);
       end = new Date(end);
     }
+    const newEvents = []
+    GetEvents(event.ownerId).then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        newEvents.push(doc.data())
+        this.setState({
+          events: newEvents
+        })
+      });
+    })
   }
 
-  createModule = ({title, code, link, type}) => {
+  createModule = ({title, code, link, type, repeat}) => {
     const {modules} = this.state
     const newModuleId = uuidV4()
-    const updatedModule = {...this.state.modal, id: newModuleId, ownerId: this.props.uid, title, code, link, type}
+    const updatedModule = {...this.state.modal, id: newModuleId, ownerId: this.props.uid, title, code, link, type, repeat}
     const nextModules = [...modules]
     nextModules.push(updatedModule)
     UpdateModules(newModuleId).set(updatedModule).then(
@@ -203,10 +204,10 @@ function myTimer() {
       console.error('Create New Module error', error);
     });
   }
-  createAssignment = ({title, code, link, type, deadline, due}) => {
+  createAssignment = ({title, code, link, type, deadline, due, repeat}) => {
     const {assignment} = this.state
     const newAssignmentId = uuidV4()
-    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, type, deadline, due}
+    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, type, deadline, due, repeat}
     const nextAssignment = [...assignment]
     nextAssignment.push(updatedAssignment)
     UpdateAssignment(newAssignmentId).set(updatedAssignment).then(
@@ -269,20 +270,21 @@ function myTimer() {
   deleteEvent = ({id}) => {
     const {events} = this.state
     var family=[]
+    var event=[];
     for(var j=0; j<events.length; j++)
     {
       if(events[j].id==id)
       {
-        family=events[j].family;
+        event=events[j];
       }
     }
-    console.log(family);
-    for(var i=0; i<4; i++)
+    family=event.family;
+    const nextEvents = events.filter(existingEvent => {
+    return existingEvent.family !== family
+  })
+    for(var i=0; i<family.length; i++)
     {
-      id=family[i];
-      const nextEvents = events.filter(existingEvent => {
-      return existingEvent.id !== id
-    })
+    id=family[i];
     UpdateEvents(id).delete().then(
       this.setState({
         events: nextEvents,
@@ -291,6 +293,15 @@ function myTimer() {
       console.error('Delete Event error', error);
     });
     }
+    const newEvents = []
+    GetEvents(event.ownerId).then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        newEvents.push(doc.data())
+        this.setState({
+          events: newEvents
+        })
+      });
+    })
   }
   deleteModule = ({id}) => {
     const {modules} = this.state

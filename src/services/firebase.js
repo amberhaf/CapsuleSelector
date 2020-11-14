@@ -33,6 +33,7 @@ export const calendarInitialState = {
     type: null,
     due: null,
     family: [],
+    repeat: 1,
     start: new Date(2018, 4, 4, 7, 0, 0),
     end: new Date(2018, 4, 4, 8, 0, 0),
   },
