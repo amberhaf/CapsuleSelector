@@ -64,16 +64,22 @@ export default class Modal extends React.Component {
             floatingLabelText="Link to Class"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, link: newValue}})}
           />
-          {!('deadline' in this.state.event) ? <TextField
-            defaultValue={this.state.event.type}
-            floatingLabelText="Class type"
-            onChange={(event, newValue) => this.setState({event: {...this.state.event, type: newValue}})}
-          /> : ''}
-          {'deadline' in this.state.event ? <TextField
-            defaultValue={this.state.event.type}
-            floatingLabelText="Deadline type"
-            onChange={(event, newValue) => this.setState({event: {...this.state.event, type: newValue}})}
-          /> : ''}
+          {!('deadline' in this.state.event) ? 
+          <label>
+          Class type:
+          <select value={this.state.event.type}  onChange= {(event, value) => this.setState({event: {...this.state.event, type:  event.target.value}})}>
+            <option value="lecture">Lecture</option>
+            <option value="lab">Lab</option>
+            <option value="tutorial">Tutorial</option>
+          </select>
+        </label> : ''}
+          {'deadline' in this.state.event ? <label> Deadline type:
+          <select value={this.state.event.type}  onChange= {(event, value) => this.setState({event: {...this.state.event, type:  event.target.value}})}>
+            <option value="Assignment">Assignment</option>
+            <option value="Interview">Interview</option>
+            <option value="Meeting">Meeting</option>
+          </select>
+        </label>: ''}
           {'deadline' in this.state.event ? <TextField
             defaultValue={this.state.event.due}
             floatingLabelText="Due date"
