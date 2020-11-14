@@ -21,6 +21,16 @@ function Header() {
           <span className="navbar-toggler-icon" />
         </button>
 
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Timetable</a>
+          <a class="dropdown-item" href="#">Assignments</a>
+        </div>
+      </li>
+
         <div
           className="collapse navbar-collapse justify-content-end"
           id="navbarNavAltMarkup"

@@ -3,19 +3,24 @@ import Header from "../components/Header";
 import { auth, /*db*/ } from "../services/firebase";
 
 export default class Profile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: auth().currentUser
-    };
-  }
 
   render() {
     return (
       <div>
         <Header />
-        <div className="mx-4">
-          Login in as: <strong>{this.state.user.email}</strong>
+        <div id = "mx-4">
+          <h1>
+            Settings
+          </h1>
+        </div>
+        <div class = "settingButton">
+        Colour Theme
+        </div>
+        <div class = "settingButton">
+          Change Password
+        </div>
+        <div class = "settingButton">
+          Font
         </div>
       </div>
     );
