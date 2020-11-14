@@ -121,7 +121,6 @@ class Dnd extends Component {
         const newEventId=family[i];
         updatedEvent = {...event, start, end, family}
         updatedEvent = {...updatedEvent, id: newEventId, ownerId: this.props.uid}
-        console.log(updatedEvent)
         nextEvents.push(updatedEvent)
         UpdateEvents(newEventId).set(updatedEvent).then(
           this.setState({
@@ -204,10 +203,10 @@ class Dnd extends Component {
       console.error('Create New Module error', error);
     });
   }
-  createAssignment = ({title, code, link, type, deadline, due, repeat}) => {
+  createAssignment = ({title, code, link, type, deadline, due}) => {
     const {assignment} = this.state
     const newAssignmentId = uuidV4()
-    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, type, deadline, due, repeat}
+    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, type, deadline, due}
     const nextAssignment = [...assignment]
     nextAssignment.push(updatedAssignment)
     UpdateAssignment(newAssignmentId).set(updatedAssignment).then(
@@ -218,16 +217,16 @@ class Dnd extends Component {
       console.error('Create New Assignment error', error);
     });
   }
-  editEvent = ({id, title, code, link, type, due}) => {
+  editEvent = ({id, title, code, link, type, due, repeat}) => {
     const {events} = this.state
 
     const nextEvents = events.map(existingEvent => {
       return existingEvent.id === id
-        ? {...existingEvent, title, code, link, type, due}
+        ? {...existingEvent, title, code, link, type, due, repeat}
         : existingEvent
     })
 
-    UpdateEvents(id).update({title, code, link, type, due}).then(
+    UpdateEvents(id).update({title, code, link, type, due, repeat}).then(
       this.setState({
         events: nextEvents,
       })
@@ -235,15 +234,15 @@ class Dnd extends Component {
       console.error('Update Event error', error);
     });
   }
-  editModule = ({id, title, code, link, type}) => {
+  editModule = ({id, title, code, link, type, repeat}) => {
     const {modules} = this.state
 
     const nextModules = modules.map(existingModule => {
       return existingModule.id === id
-        ? {...existingModule, title, code, link, type}
+        ? {...existingModule, title, code, link, type, repeat}
         : existingModule
     })
-    UpdateModules(id).update({title, code, link, type}).then(
+    UpdateModules(id).update({title, code, link, type, repeat}).then(
       this.setState({
         modules: nextModules,
       })

@@ -1,8 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-//import { Link } from "react-router-dom";
-
 
 export default class Modal extends React.Component {
 
@@ -13,9 +11,14 @@ export default class Modal extends React.Component {
     }
   }
 
+  handleChange = e => {
+    e.preventDefault();
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.state.onRequestClose()
+    console.log(this.state.event.start);
     this.props.event.title ? this.state.onEditEvent(this.state.event) :
       this.state.onCreatEvent(this.state.event)
   }
@@ -76,12 +79,13 @@ export default class Modal extends React.Component {
             floatingLabelText="Due date"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, due: newValue}})}
           /> : ''}
-           {!('deadline' in this.state.event) ? <TextField
-            className={this.props.event.title ? 'd-none mr-3 my-3' : 'mr-3 my-3'}
-            defaultValue={this.state.event.repeat}
-            floatingLabelText="Repeat for"
-            onChange={(event, newValue) => this.setState({event: {...this.state.event, repeat: newValue}})}
-          />: ''}
+           {(!('deadline' in this.state.event)&&(this.state.event.family.length===0))? 
+             <label>
+             Repeat for:
+            <input value={this.state.event.repeat}
+            type="number" min="1" max="100"
+            onChange= {(event, value) => this.setState({event: {...this.state.event, repeat:  event.target.value}})}
+          /> </label>: ''}
         </div>
         <div>
           <RaisedButton
