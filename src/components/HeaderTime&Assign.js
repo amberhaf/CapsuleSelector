@@ -26,8 +26,8 @@ function Header() {
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Timetable</a>
-          <a class="dropdown-item" href="#">Assignments</a>
+          <a class="dropdown-item" href="Timetable">Timetable</a>
+          <a class="dropdown-item" href="Deadlines">Assignments</a>
         </div>
       </li>
 

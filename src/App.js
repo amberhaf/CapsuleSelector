@@ -11,6 +11,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Dashboard from './pages/dashboard';
 import Timetable from './pages/Timetable';
+import Deadlines from './pages/Deadlines';
 import Resources from './pages/Resources';
 import { auth } from './services/firebase';
 import { Forgot } from './pages/Forgot';
@@ -75,6 +76,7 @@ class App extends Component {
           <PrivateRoute path="/map" authenticated={this.state.authenticated} component={Mapping}></PrivateRoute>
           <PrivateRoute path="/resources" authenticated={this.state.authenticated} component={Resources}></PrivateRoute>
           <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
+          <PrivateRoute path="/deadlines" authenticated={this.state.authenticated} component={Deadlines}></PrivateRoute>
 
           <Route exact path = "/forgot" component={Forgot}></Route>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>

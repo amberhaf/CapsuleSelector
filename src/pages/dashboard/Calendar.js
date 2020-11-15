@@ -15,8 +15,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 //Actions
 import {
-  GetEvent,
-  GetEvents,
+  GetEventsSpecific,
   UpdateEvents,
   GetModules,
   UpdateModules,
@@ -48,7 +47,7 @@ class Dnd extends Component {
     const newModules = []
     const newAssignment = []
 
-    GetEvents(this.props.uid).then(querySnapshot => {
+    GetEventsSpecific(this.props.uid, this.props.module).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
         this.setState({
@@ -136,7 +135,7 @@ class Dnd extends Component {
       }
     }
     const newEvents = []
-    GetEvents(event.ownerId).then(querySnapshot => {
+    GetEventsSpecific(event.ownerId).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
         this.setState({
@@ -179,7 +178,7 @@ class Dnd extends Component {
       end = new Date(end);
     }
     const newEvents = []
-    GetEvents(event.ownerId).then(querySnapshot => {
+    GetEventsSpecific(event.ownerId).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
         this.setState({
@@ -293,7 +292,7 @@ class Dnd extends Component {
     });
     }
     const newEvents = []
-    GetEvents(event.ownerId).then(querySnapshot => {
+    GetEventsSpecific(event.ownerId).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
         this.setState({
@@ -348,13 +347,13 @@ class Dnd extends Component {
   };
   handleModules = (event) => {
     this.setState({
-      modal: event ? event : {...this.state.modal},
+      modal: event ? event : {...this.state.modal, module: true},
       modulesOpen: true
     });
   }
   handleAssignment = (event) => {
     this.setState({
-      modal: event ? event : {...this.state.modal, deadline: null},
+      modal: event ? event : {...this.state.modal, deadline: null,  module: false},
       assignmentOpen: true
     });
   }

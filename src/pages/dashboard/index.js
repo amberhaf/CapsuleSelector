@@ -19,7 +19,7 @@ class Dashboard extends Component {
             return (
               <div>
                <div><strong>Scheduler: {this.state.user.email}</strong></div>
-               <Calendar uid={this.state.user.uid} /> 
+               <Calendar uid={this.state.user.uid} module={this.props.module}/> 
               </div>
             )
         }}
