@@ -104,7 +104,7 @@ export default class Assignment extends Component {
     return (
       <div>
         <Header />
-        <h2> Assignment </h2>
+        <h2> Notes </h2>
         <Link to="/timetable" className="b"><button> Timetable </button></Link> 
         {this.state.assignments.map(assignment => {
           return (
@@ -130,24 +130,19 @@ export default class Assignment extends Component {
         <div className="form-group mx-4">
           <input
             className="form-control"
-            placeholder="title"
+            placeholder="Module"
             onChange={this.handleChangeContent}
             value={this.state.content}
           />
         <input
             className="form-control"
-            placeholder="due"
+            placeholder="Contents"
             onChange={this.handleChangeDue}
             value={this.state.due}
           />
-                    <input
-            className="form-control"
-            placeholder="complete"
-            onChange={this.handleChangeComplete}
-            value={this.state.complete}
-          />
+           
           <button className="btn btn-success mt-3" onClick={this.createassignment}>
-            Create assignment
+            Create a new note
           </button>
         </div>
       </div>
