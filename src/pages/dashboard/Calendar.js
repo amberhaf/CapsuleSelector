@@ -135,7 +135,7 @@ class Dnd extends Component {
       }
     }
     const newEvents = []
-    GetEventsSpecific(event.ownerId).then(querySnapshot => {
+    GetEventsSpecific(event.ownerId, this.props.module).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
         this.setState({
@@ -178,7 +178,7 @@ class Dnd extends Component {
       end = new Date(end);
     }
     const newEvents = []
-    GetEventsSpecific(event.ownerId).then(querySnapshot => {
+    GetEventsSpecific(event.ownerId, this.props.module).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
         this.setState({
@@ -292,7 +292,7 @@ class Dnd extends Component {
     });
     }
     const newEvents = []
-    GetEventsSpecific(event.ownerId).then(querySnapshot => {
+    GetEventsSpecific(event.ownerId, this.props.module).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
         this.setState({
