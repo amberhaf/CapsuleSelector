@@ -188,10 +188,10 @@ class Dnd extends Component {
     })
   }
 
-  createModule = ({title, code, link, type, repeat}) => {
+  createModule = ({title, code, link, type, repeat, colour}) => {
     const {modules} = this.state
     const newModuleId = uuidV4()
-    const updatedModule = {...this.state.modal, id: newModuleId, ownerId: this.props.uid, title, code, link, type, repeat}
+    const updatedModule = {...this.state.modal, id: newModuleId, ownerId: this.props.uid, title, code, link, type, repeat, colour}
     const nextModules = [...modules]
     nextModules.push(updatedModule)
     UpdateModules(newModuleId).set(updatedModule).then(
@@ -202,10 +202,10 @@ class Dnd extends Component {
       console.error('Create New Module error', error);
     });
   }
-  createAssignment = ({title, code, link, type, deadline, due}) => {
+  createAssignment = ({title, code, link, type, deadline, due, colour}) => {
     const {assignment} = this.state
     const newAssignmentId = uuidV4()
-    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, type, deadline, due}
+    const updatedAssignment = {...this.state.modal, id: newAssignmentId, ownerId: this.props.uid, title, code, link, type, deadline, due, colour}
     const nextAssignment = [...assignment]
     nextAssignment.push(updatedAssignment)
     UpdateAssignment(newAssignmentId).set(updatedAssignment).then(
@@ -216,16 +216,16 @@ class Dnd extends Component {
       console.error('Create New Assignment error', error);
     });
   }
-  editEvent = ({id, title, code, link, type, due, repeat}) => {
+  editEvent = ({id, title, code, link, type, due, repeat, colour}) => {
     const {events} = this.state
 
     const nextEvents = events.map(existingEvent => {
       return existingEvent.id === id
-        ? {...existingEvent, title, code, link, type, due, repeat}
+        ? {...existingEvent, title, code, link, type, due, repeat, colour}
         : existingEvent
     })
 
-    UpdateEvents(id).update({title, code, link, type, due, repeat}).then(
+    UpdateEvents(id).update({title, code, link, type, due, repeat, colour}).then(
       this.setState({
         events: nextEvents,
       })
@@ -233,15 +233,15 @@ class Dnd extends Component {
       console.error('Update Event error', error);
     });
   }
-  editModule = ({id, title, code, link, type, repeat}) => {
+  editModule = ({id, title, code, link, type, repeat, colour}) => {
     const {modules} = this.state
 
     const nextModules = modules.map(existingModule => {
       return existingModule.id === id
-        ? {...existingModule, title, code, link, type, repeat}
+        ? {...existingModule, title, code, link, type, repeat, colour}
         : existingModule
     })
-    UpdateModules(id).update({title, code, link, type, repeat}).then(
+    UpdateModules(id).update({title, code, link, type, repeat, colour}).then(
       this.setState({
         modules: nextModules,
       })
@@ -249,15 +249,15 @@ class Dnd extends Component {
       console.error('Update Module error', error);
     });
   }
-  editAssignment = ({id, title, code, link, type, deadline, due}) => {
+  editAssignment = ({id, title, code, link, type, deadline, due, colour}) => {
     const {assignment} = this.state 
 
     const nextAssignment = assignment.map(existingAssignment => {
       return existingAssignment.id === id
-        ? {...existingAssignment, title, code, link, type, deadline, due}
+        ? {...existingAssignment, title, code, link, type, deadline, due, colour}
         : existingAssignment
     })
-    UpdateAssignment(id).update({title, code, link, type, deadline, due}).then(
+    UpdateAssignment(id).update({title, code, link, type, deadline, due, colour}).then(
       this.setState({
         assignment: nextAssignment,
       })

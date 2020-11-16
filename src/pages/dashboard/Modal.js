@@ -85,13 +85,26 @@ export default class Modal extends React.Component {
             floatingLabelText="Due date"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, due: newValue}})}
           /> : ''}
-           {(!('deadline' in this.state.event)&&(this.state.event.family.length===0))? 
+          {(!('deadline' in this.state.event)&&(this.state.event.family.length===0))? 
              <label>
              Repeat for:
             <input value={this.state.event.repeat}
             type="number" min="1" max="100"
             onChange= {(event, value) => this.setState({event: {...this.state.event, repeat:  event.target.value}})}
           /> </label>: ''}
+          {this.state.event.family.length===0? 
+             <label>
+            Colour Code:
+             <select value={this.state.event.colour}  onChange= {(event, value) => this.setState({event: {...this.state.event, colour:  event.target.value}})}>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+          </select>
+         </label>: ''}
         </div>
         <div>
           <RaisedButton
