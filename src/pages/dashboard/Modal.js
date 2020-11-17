@@ -54,11 +54,6 @@ export default class Modal extends React.Component {
             floatingLabelText="Title"
             onChange={(event, newValue) => this.setState({event: {...this.state.event, title: newValue}})}
           />
-           <TextField
-            defaultValue={this.state.event.title}
-            floatingLabelText="Colour"
-            onChange={(event, newValue) => this.setState({event: {...this.state.event, title: newValue}})}
-          />
           <TextField
             defaultValue={this.state.event.code}
             floatingLabelText="Module Code"

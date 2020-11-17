@@ -132,6 +132,7 @@ class Dnd extends Component {
         start = new Date(start);
         end=end.setDate(end.getDate() + 7);
         end = new Date(end);
+
       }
     }
     const newEvents = []
@@ -144,7 +145,7 @@ class Dnd extends Component {
       });
     })
   }
-
+  
   selectEvent = (event) => {
     this.handleOpen(event)
   }

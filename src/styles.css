@@ -171,6 +171,34 @@ code {
   height: auto;
   cursor: pointer;
 }
+option[value="orange"]
+{
+  background-color:orange;
+}
+option[value="red"]
+{
+  background-color:red;
+}
+option[value="yellow"]
+{
+  background-color:yellow;
+}
+option[value="green"]
+{
+  background-color:green;
+}
+option[value="blue"]
+{
+  background-color:blue;
+}
+option[value="pink"]
+{
+  background-color:pink;
+}
+option[value="purple"]
+{
+  background-color:purple;
+}
 
 /*
 *{
