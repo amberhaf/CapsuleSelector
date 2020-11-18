@@ -8,96 +8,84 @@ export default class Assignment extends Component {
     super();
     this.state = {
       user: auth().currentUser,
-      assignments: [],
+      notes: [],
+      module: "",
       content: "",
-      due: "",
-      complete: "",
-      assignment: {}
+      note: {}
     };
+    this.handleChangeModule = this.handleChangeModule.bind(this);
     this.handleChangeContent = this.handleChangeContent.bind(this);
-    this.handleChangeDue = this.handleChangeDue.bind(this);
-    this.handleChangeComplete = this.handleChangeComplete.bind(this);
-    this.createassignment = this.createassignment.bind(this);
-    this.editassignment = this.editassignment.bind(this);
+    this.createnote = this.createnote.bind(this);
+    this.editnote = this.editnote.bind(this);
   }
 
   componentDidMount() {
-    db.ref(`all_assignments/${this.state.user.uid}`).on("value", snapshot => {
-      let allassignments = [];
+    db.ref(`all_note/${this.state.user.uid}`).on("value", snapshot => {
+      let allnote = [];
       snapshot.forEach(snap => {
-        allassignments.push(snap.val());
+        allnote.push(snap.val());
       });
-      console.log(allassignments);
-      this.setState({ assignments: allassignments });
+      console.log(allnote);
+      this.setState({ notes: allnote });
     });
   }
 
+  handleChangeModule(e) {
+    this.setState({
+      module: e.target.value
+    });
+  }
   handleChangeContent(e) {
     this.setState({
       content: e.target.value
     });
   }
-  handleChangeDue(e) {
-    this.setState({
-      due: e.target.value
-    });
-  }
-  handleChangeComplete(e) {
-    this.setState({
-      complete: e.target.value
-    });
-  }
-
-  createassignment() {
+  createnote() {
     const uid = this.state.user.uid;
+    const { module } = this.state;
     const { content } = this.state;
-    const { due } = this.state;
-    const { complete } = this.state;
-    const assignment = this.state.assignment;
-    if (assignment && assignment.content) {
+    const note = this.state.note;
+    if (note && note.module) {
       return db
-        .ref(`all_assignments/${uid}/${assignment.assignment_id}`)
+        .ref(`all_note/${uid}/${note.note_id}`)
         .update({
+          module,
           content,
-          due,
-          complete,
           uid
         })
         .then(_ => {
-          this.setState({ content: "", due: "", complete: "", assignment: {} });
+          this.setState({ module: "", content: "", note: {} });
         })
         .catch(error => console.log(error.message));
     }
-    const assignment_id = `assignment-${Date.now()}`;
-    db.ref(`all_assignments/${uid}/${assignment_id}`)
+    const note_id = `note-${Date.now()}`;
+    db.ref(`all_note/${uid}/${note_id}`)
       .set({
+        module,
         content,
-        due,
-        complete,
-        assignment_id,
+        note_id,
         uid
       })
       .then(_ => {
-        this.setState({ content: "", due: "", complete: "", assignment: {} });
+        this.setState({ module: "", content: "", note: {} });
       })
       .catch(error => console.log(error.message));
   }
 
-  editassignment(assignment_id) {
-    db.ref(`all_assignments/${this.state.user.uid}/${assignment_id}`)
+  editnote(note_id) {
+    db.ref(`all_note/${this.state.user.uid}/${note_id}`)
       .once("value")
       .then(snapshot => {
         this.setState({
-          assignment: snapshot.val(),
-          content: snapshot.val().content,
-          due: snapshot.val().due,
-          complete: snapshot.val().complete
+          note: snapshot.val(),
+          module: snapshot.val().module,
+          content: snapshot.val().content
         });
       });
   }
 
-  deleteassignment(assignment_id) {
-    db.ref(`all_assignments/${this.state.user.uid}/${assignment_id}`).remove();
+  deletenote(note_id) {
+    db.ref(`all_note/${this.state.user.uid}/${note_id}`).remove();
   }
 
   render() {
@@ -106,22 +94,21 @@ export default class Assignment extends Component {
       <div class="container">
         <Header />
         <h2> Notes </h2>
-        <Link to="/timetable" className="b"><button> Timetable </button></Link> 
-        {this.state.assignments.map(assignment => {
+       
+        {this.state.notes.map(note => {
           return (
-            <div key={assignment.assignment_id} className="card card-body shadow-sm m-4">
-              <p>{assignment.content}</p>
-              <p>{assignment.due}</p>
-              <p>{assignment.complete}</p>
+            <div key={note.note_id} className="card card-body  m-2" >
+              <p>{note.module}</p>
+              <p>{note.content}</p>
               <button
-                className="btn btn-sm text-info"
-                onClick={() => this.editassignment(assignment.assignment_id)}
+                className="btn1   text-info"
+                onClick={() => this.editnote(note.note_id)}
               >
                 Edit
               </button>
               <button
-                className="btn btn-sm text-danger"
-                onClick={() => this.deleteassignment(assignment.assignment_id)}
+                className="btn1   text-danger"
+                onClick={() => this.deletenote(note.note_id)}
               >
                 Delete
               </button>
@@ -132,17 +119,17 @@ export default class Assignment extends Component {
           <input
             className="form-control"
             placeholder="Module"
-            onChange={this.handleChangeContent}
-            value={this.state.content}
+            onChange={this.handleChangeModule}
+            value={this.state.module}
           />
         <input
             className="form-control"
             placeholder="Contents"
-            onChange={this.handleChangeDue}
-            value={this.state.due}
+            onChange={this.handleChangeContent}
+            value={this.state.content}
           />
            
-          <button className="btn btn-success mt-3" onClick={this.createassignment}>
+          <button className="btn btn-success mt-3" onClick={this.createnote}>
             Create a new note
           </button>
         </div>
