@@ -78,6 +78,7 @@ export default class Modal extends React.Component {
             <option value="Assignment">Assignment</option>
             <option value="Interview">Interview</option>
             <option value="Meeting">Meeting</option>
+            <option value="Meeting">Exam</option>
           </select>
         </label>: ''}
           {'deadline' in this.state.event ? <TextField

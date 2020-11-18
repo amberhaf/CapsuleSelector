@@ -122,13 +122,16 @@ export default class Assignment extends Component {
             onChange={this.handleChangeModule}
             value={this.state.module}
           />
-        <input
+                 
+          <textarea 
             className="form-control"
             placeholder="Contents"
             onChange={this.handleChangeContent}
             value={this.state.content}
-          />
-           
+              type="text"
+              cols="30"
+              rows="8"
+              />
           <button className="btn btn-success mt-3" onClick={this.createnote}>
             Create a new note
           </button>
