@@ -55,6 +55,7 @@ class Dnd extends Component {
         })
       });
     })
+
     GetModules(this.props.uid).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newModules.push(doc.data())
@@ -71,9 +72,6 @@ class Dnd extends Component {
         })
       });
     })
-  }
-  refreshPage() {
-    window.location.reload(false);
   }
 
   moveEvent({event, start, end}) {
@@ -362,7 +360,7 @@ class Dnd extends Component {
     if (this.state.events) {
       return (
         <div className={'row'}>
-          <div className={'col-2'}>
+           { (this.props.module) && <div className={'col-2'}>
             Modules:
             <FloatingActionButton
               mini={true}
@@ -375,6 +373,7 @@ class Dnd extends Component {
                      onClickEvent={this.handleModules}
             />
           </div>
+        }
           <div style={{height: 500}} className={'col-8'}>
 
             <DragAndDropCalendar
@@ -428,7 +427,7 @@ class Dnd extends Component {
               />
             </Dialog>
           </div>
-          <div className={'col-2'}>
+         { (!this.props.module)&&<div className={'col-2'}>
             Deadlines:
             <div>
               <FloatingActionButton
@@ -443,6 +442,7 @@ class Dnd extends Component {
                      onClickEvent={this.handleAssignment}
             />
           </div>
+    }
         </div>
       )
     }

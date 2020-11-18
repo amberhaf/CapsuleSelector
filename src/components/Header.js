@@ -4,52 +4,44 @@ import { auth } from "../services/firebase";
 
 function Header() {
   return (
-    <header>
-      <nav className="navbar navbar-expand-md navbar-light bg-light">
-        <Link className="navbar-brand" to="/">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container"> <Link className="navbar-brand" to="/">
           Home
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
 
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNavAltMarkup"
-        >
+        <div class="container">
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
           {auth().currentUser ? (
-            <div className="navbar-nav">
-              <Link className="nav-item nav-link" to="/profile">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+              <li class="nav-item">
+              <Link className="navbar-brand" to="/profile">
                 Setting
-              </Link>
-              <button
+        </Link></li>
+              <li class="nav-item"><button
                 className="btn btn-primary"
                 onClick={() => auth().signOut()}
               >
                 Logout
-              </button>
-            </div>
+              </button></li>
+              </ul>
           ) : (
-            <div className="navbar-nav">
-              <Link className="nav-item nav-link" to="/login">
-                Sign In
-              </Link>
-              <Link className="nav-item nav-link" to="/signup">
-                Sign Up
-              </Link>
-            </div>
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+              <li class="nav-item">
+              <Link className="navbar-brand" to="/login">
+              Sign In
+              </Link></li>
+              <li class="nav-item">
+              <Link className="navbar-brand" to="/signup">
+              Sign Up
+              </Link></li>
+              </ul>
           )}
+         </div>
+        </div>
         </div>
       </nav>
-    </header>
+
   );
 }
 

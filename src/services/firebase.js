@@ -18,9 +18,9 @@ export const storageKey = 'KEY_FOR_LOCAL_STORAGE';
 export const datab = firebase.firestore();
 export const firebaseAuth = firebase.auth;
 export const minTime = new Date();
-minTime.setHours(7, 0, 0);
+minTime.setHours(9, 0, 0);
 export const maxTime = new Date();
-maxTime.setHours(20, 0, 0);
+maxTime.setHours(18, 0, 0);
 export const calendarInitialState = {
   events: [],
   modules: [],

@@ -6,23 +6,25 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div>
+    <section className="page-section bg-primary" id="about">
+      <div className="container">
         <Header />
         <div id = "mx-4">
-          <h1>
+          <h1 className="text-center">
             Settings
           </h1>
         </div>
-        <div class = "settingButton">
+        <div className = "settingButton">
         Colour Theme
         </div>
-        <div class = "settingButton">
+        <div className= "settingButton">
           Change Password
         </div>
-        <div class = "settingButton">
+        <div className= "settingButton">
           Font
         </div>
-      </div>
+        </div>
+      </section>
     );
   }
 }

@@ -4,6 +4,7 @@ import { ProfilerConsumer } from '../../context/profileContext'
 // import components
 import { auth } from '../../services/firebase';
 import Calendar from './Calendar'
+import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
   constructor() {
@@ -18,7 +19,14 @@ class Dashboard extends Component {
         {context => {
             return (
               <div>
-               <div><strong>Scheduler: {this.state.user.email}</strong></div>
+                <div className="text-center">
+                <button className="btn btn-primary buttons"><Link to="/timetable">
+                Timetable
+        </Link></button>
+                <button className="btn btn-primary buttons"><Link to="/deadlines">
+                Deadlines
+        </Link></button>
+              </div>
                <Calendar uid={this.state.user.uid} module={this.props.module}/> 
               </div>
             )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { signup } from '../helpers/auth';
+import Header from "../components/Header";
 
 export default class SignUp extends Component {
 
@@ -33,6 +34,8 @@ export default class SignUp extends Component {
 
   render() {
     return (
+      <section class="page-section bg-primary">
+      <Header />
       <div className="container">
         <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
@@ -54,6 +57,7 @@ export default class SignUp extends Component {
           <p>Already have an account? <Link to="/login">Login</Link></p>
         </form>
       </div>
+      </section>
     )
   }
 }

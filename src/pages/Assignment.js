@@ -102,7 +102,8 @@ export default class Assignment extends Component {
 
   render() {
     return (
-      <div>
+      <section class="page-section bg-primary">
+      <div class="container">
         <Header />
         <h2> Notes </h2>
         <Link to="/timetable" className="b"><button> Timetable </button></Link> 
@@ -146,6 +147,7 @@ export default class Assignment extends Component {
           </button>
         </div>
       </div>
+      </section>
     );
   }
 }
