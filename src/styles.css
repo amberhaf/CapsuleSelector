@@ -10260,15 +10260,15 @@ option[value="purple"]
 .card
 {
   display: inline-block;
-left:20px;
+left:17px;
 width: 400px;
-padding: 70px 20px;
+padding: 70px 19px;
 line-height: 18px; 
 text-align: center;
-box-shadow:black;
-background:#ccc;
- box-shadow: 4px 3px 8px 1px #969696;
-   -webkit-box-shadow: 4px 3px 8px 1px #969696;
+box-shadow:white;
+background:white;
+ box-shadow: 4px 3px 8px 1px #fcfafa;
+   -webkit-box-shadow: 4px 3px 8px 1px #ffffff;
    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
    sans-serif;
@@ -10277,8 +10277,8 @@ background:#ccc;
 .btn1{
   border-radius: 5px;
   border-top:  #ccc;
-  border-color:#ccc ;
-  background-color: #ccc;
+  border-color:white ;
+  background-color: white;
 }
 
 .buttons{

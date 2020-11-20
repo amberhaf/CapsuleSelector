@@ -23,7 +23,7 @@ export default class HomePage extends Component {
               </div>
               <div class="col-md-6 col-lg-4 mb-5 text-center">
                   <div class="mt-5">
-                  <Link to="/assignment"><input type="image" src="../Image/003-assignment.png" alt="Assignments" width="100" ></input></Link> 
+                  <Link to="/Notes"><input type="image" src="../Image/003-assignment.png" alt="Notes" width="100" ></input></Link> 
                           <h3 class="h4 mb-2">Notes</h3>
                   </div>
               </div>

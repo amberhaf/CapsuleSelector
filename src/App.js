@@ -3,7 +3,7 @@ import {
   Route, BrowserRouter as Router, Switch, Redirect,
 } from "react-router-dom";
 import Home from './pages/Home';
-import Assignment from './pages/Assignment';
+import Notes from './pages/Notes';
 import Mapping from './pages/Map';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
@@ -14,6 +14,7 @@ import Deadlines from './pages/Deadlines';
 import Resources from './pages/Resources';
 import { auth } from './services/firebase';
 import { Forgot } from './pages/Forgot';
+
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -69,7 +70,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <PrivateRoute path="/profile" authenticated={this.state.authenticated} component={Profile}></PrivateRoute>
-          <PrivateRoute path="/assignment" authenticated={this.state.authenticated} component={Assignment}></PrivateRoute>
+          <PrivateRoute path="/notes" authenticated={this.state.authenticated} component={Notes}></PrivateRoute>
           <PrivateRoute path="/Timetable" authenticated={this.state.authenticated} component={Timetable}></PrivateRoute>
           <PrivateRoute path="/map" authenticated={this.state.authenticated} component={Mapping}></PrivateRoute>
           <PrivateRoute path="/resources" authenticated={this.state.authenticated} component={Resources}></PrivateRoute>

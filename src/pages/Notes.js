@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth, db } from "../services/firebase";
-import { Link } from "react-router-dom";
 
-export default class Assignment extends Component {
+
+export default class Notes extends Component {
   constructor() {
     super();
     this.state = {
