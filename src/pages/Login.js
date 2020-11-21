@@ -33,9 +33,10 @@ export default class Login extends Component {
 
   render() {
     return (
-      <section class="page-section bg-primary">
+      <div>
         <Header />
-      <div class="container">
+        <header class="masthead">
+            <div class="container h-100">
         <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
             Student Scheduler Online
@@ -58,9 +59,9 @@ export default class Login extends Component {
           <p>Don't have an account? <Link to="/signup">Sign up</Link>
           </p>
         </form>
+        </div>
+        </header>
       </div>
-      </section>
-      
     )
   }
 }

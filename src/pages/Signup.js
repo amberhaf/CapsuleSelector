@@ -34,9 +34,10 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <section class="page-section bg-primary">
-      <Header />
-      <div className="container">
+      <div>
+        <Header />
+        <header class="masthead">
+            <div class="container h-100">
         <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
             Sign Up to
@@ -56,8 +57,9 @@ export default class SignUp extends Component {
           <hr></hr>
           <p>Already have an account? <Link to="/login">Login</Link></p>
         </form>
+        </div>
+        </header>
       </div>
-      </section>
     )
   }
 }

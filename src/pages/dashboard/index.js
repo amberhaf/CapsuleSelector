@@ -18,15 +18,7 @@ class Dashboard extends Component {
       <ProfilerConsumer value={this.state.user}>
         {context => {
             return (
-              <div>
-                <div className="text-center">
-                <button className="btn btn-primary buttons"><Link to="/timetable">
-                Timetable
-        </Link></button>
-                <button className="btn btn-primary buttons"><Link to="/deadlines">
-                Deadlines
-        </Link></button>
-              </div>
+              <div className="calendar text-center col">
                <Calendar uid={this.state.user.uid} module={this.props.module}/> 
               </div>
             )

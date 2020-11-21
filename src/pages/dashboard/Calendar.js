@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import { datab } from '../../services/firebase'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
@@ -404,6 +405,7 @@ class Dnd extends Component {
   render() {
     if (this.state.events) {
       return (
+        <div>
         <div className={'row'}>
            { (this.props.module) && <div className={'col-2'}>
             Modules:
@@ -419,7 +421,7 @@ class Dnd extends Component {
             />
           </div>
         }
-          <div style={{height: 500}} className={'col-8'}>
+          <div style={{height: 500}}>
 
             <DragAndDropCalendar
 
@@ -432,14 +434,7 @@ class Dnd extends Component {
               onSelectEvent={this.selectEvent}
               min={minTime}
               max={maxTime}
-              eventPropGetter={(this.eventStyleGetter)}/*
-              eventPropGetter={event => ({
-                style: {
-                    backgroundColor: event.colour ==="yellow"
-                        ? "#3174ad"
-                        : "#ad4ca4",
-                }
-            })}*/
+              eventPropGetter={(this.eventStyleGetter)}
             />
             <Dialog title="Class"
                     modal={false}
@@ -497,6 +492,7 @@ class Dnd extends Component {
           </div>
     }
         </div>
+      </div>
       )
     }
   }

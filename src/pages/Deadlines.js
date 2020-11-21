@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import Header from "../components/Header";
+import Header from "../components/HeaderTime&Assign";
 import { Link } from "react-router-dom";
 import Dashboard from "./dashboard";
 const Deadlines = () => (
-
+  <div>
+  <Header />
   <section className="page-section bg-primary">
-  <div className="container">
-    <Header />
+  <div className="container color">
   <Dashboard module={false}/>
-    </div>
-    </section>
+  </div>
+   </section>
+   </div>
 );
 
 export default Deadlines;
