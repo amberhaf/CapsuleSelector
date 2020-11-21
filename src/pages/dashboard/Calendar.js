@@ -47,6 +47,7 @@ class Dnd extends Component {
     const newModules = []
     const newAssignment = []
 
+  
     GetEventsSpecific(this.props.uid, this.props.module).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
@@ -356,6 +357,49 @@ class Dnd extends Component {
       assignmentOpen: true
     });
   }
+  eventStyleGetter = (event, start, end, isSelected) => {
+    console.log(event);
+    var backgroundColor='#FF0000';
+    if(event.colour=="red")
+    {
+      backgroundColor='#FF0000';
+    }
+    if(event.colour=="orange")
+    {
+      backgroundColor='#FFA500';
+    }
+    if(event.colour=="yellow")
+    {
+      backgroundColor='#FFFF00';
+    }
+    if(event.colour=="green")
+    {
+      backgroundColor='#008000';
+    }
+    if(event.colour=="blue")
+    {
+      backgroundColor='#0000ff';
+    }
+    if(event.colour=="pink")
+    {
+      backgroundColor='#FFC0CB';
+    }
+    if(event.colour=="purple")
+    {
+      backgroundColor='#800080';
+    }
+    var style = {
+      backgroundColor: backgroundColor,
+      borderRadius: '0px',
+      opacity: 0.8,
+      color: 'black',
+      border: '0px',
+      display: 'block'
+    };
+    return {
+      style: style
+    };
+  }
 
   render() {
     if (this.state.events) {
@@ -388,6 +432,14 @@ class Dnd extends Component {
               onSelectEvent={this.selectEvent}
               min={minTime}
               max={maxTime}
+              eventPropGetter={(this.eventStyleGetter)}/*
+              eventPropGetter={event => ({
+                style: {
+                    backgroundColor: event.colour ==="yellow"
+                        ? "#3174ad"
+                        : "#ad4ca4",
+                }
+            })}*/
             />
             <Dialog title="Class"
                     modal={false}
