@@ -10275,10 +10275,6 @@ width: 400px;
 padding: 70px 19px;
 line-height: 18px; 
 text-align: center;
-box-shadow:white;
-background:white;
- box-shadow: 4px 3px 8px 1px #fcfafa;
-   -webkit-box-shadow: 4px 3px 8px 1px #ffffff;
    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
    sans-serif;

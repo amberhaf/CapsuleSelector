@@ -98,8 +98,9 @@ export default class Notes extends Component {
         {this.state.notes.map(note => {
           return (
             <div key={note.note_id} className="card card-body  m-2" >
-              <p>{note.module}</p>
-              <p>{note.content}</p>
+               <p>{note.module }</p>
+               <p>{note.content}</p>
+
               <button
                 className="btn1   text-info"
                 onClick={() => this.editnote(note.note_id)}
