@@ -14,6 +14,7 @@ import Deadlines from './pages/Deadlines';
 import Resources from './pages/Resources';
 import { auth } from './services/firebase';
 import { Forgot } from './pages/Forgot';
+import { Delete } from './pages/DeleteAccount';
 
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
@@ -78,6 +79,8 @@ class App extends Component {
           <PrivateRoute path="/deadlines" authenticated={this.state.authenticated} component={Deadlines}></PrivateRoute>
 
           <Route exact path = "/forgot" component={Forgot}></Route>
+          <Route exact path = "/deleteAccount" component={Delete}></Route>
+
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
         </Switch>
