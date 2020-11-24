@@ -22,7 +22,7 @@ function Header() {
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
               <li class="nav-item">
               <Link className="navbar-brand" to="/profile">
-                Setting
+                Settings
         </Link></li>
               <li class="nav-item"><button
                 className="btn btn-secondary"

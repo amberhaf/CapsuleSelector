@@ -22,7 +22,7 @@ export default class Profile extends Component {
         <br></br>
         </div>
         <Link to = "/DeleteAccount"><Button variant="danger" size="lg" block>
-          Delete Password
+          Delete Account
         </Button></Link>
         </div>
       </section>
