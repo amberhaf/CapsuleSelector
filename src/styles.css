@@ -10332,6 +10332,8 @@ text-align: center;
 }
 .btn-success
 {
+  background-color:#5dbcd2;
+  border-color: #5dbcd2;
   width: 250px;
   margin-left: 50px;
  vertical-align: 1px;
