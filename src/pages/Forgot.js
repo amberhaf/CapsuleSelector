@@ -33,6 +33,8 @@ export class Forgot extends Component {
         return(
             <div className = "container">
             <Header />
+        <header class="masthead">
+            <div class="container h-100">
             <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
             Student Scheduler Online
@@ -48,6 +50,8 @@ export class Forgot extends Component {
             <Link to={'/Login'}>Return to Sign in</Link>
             </div>
             </form>
+            </div>
+        </header>
             </div>
         )
     }

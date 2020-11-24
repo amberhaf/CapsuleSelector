@@ -155,14 +155,21 @@ class Dnd extends Component {
     var family=event.family;
     var id=family[0];
     var index = family.indexOf(event.id);
+    var nextEvents = events.map(existingEvent => {
+      return existingEvent.id === event.id
+        ? {...existingEvent, start, end}
+        : existingEvent
+    })
+    UpdateEvents(event.id).update({start, end}).then(
+      this.setState({
+        events: nextEvents,
+      })
+    ).catch(error => {
+      console.error('Update error', error);
+    });
     start=new Date(start.setDate(start.getDate() - (index*7)));
     end=new Date(end.setDate(end.getDate() - (index*7)));
     
-      const nextEvents = events.map(existingEvent => {
-        return existingEvent.id === event.id
-          ? {...existingEvent, start, end}
-          : existingEvent
-      })
     for(var i=0; i<family.length; i++)
     {
       id=family[i];
