@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth, /*db*/ } from "../services/firebase";
-
+import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 export default class Profile extends Component {
 
   render() {
@@ -15,14 +16,14 @@ export default class Profile extends Component {
           </h1>
         </div>
         <div className = "settingButton">
-        Colour Theme
-        </div>
-        <div className= "settingButton">
+        <Link to = "/Forgot"><Button variant="warning" size="lg" block>
           Change Password
+        </Button></Link>
+        <br></br>
         </div>
-        <div className= "settingButton">
-          Font
-        </div>
+        <Link to = "/DeleteAccount"><Button variant="danger" size="lg" block>
+          Delete Account
+        </Button></Link>
         </div>
       </section>
     );

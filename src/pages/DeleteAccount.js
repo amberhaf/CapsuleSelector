@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import { resetPassword } from '../helpers/auth';
 import { Link } from 'react-router-dom';
 import Header from "../components/Header";
-export class Forgot extends Component {
+import firebase from 'firebase';
+export class Delete extends Component {
 
     constructor() {
         super();
         this.state = {
             error: null,
             email: '',
+            password: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,34 +22,38 @@ export class Forgot extends Component {
     }
     async handleSubmit(event){
         event.preventDefault();
-        this.setState({ error: '' });
-        try {
-            await resetPassword(this.state.email);
-            window.alert("Password reset email sent");
-        } catch(error) {
-            this.setState({ error: error.message });
-        }
+        var user = firebase.auth().currentUser;
+
+        user.delete().then(function() {
+        // User deleted.
+        window.alert("Account Deleted");
+        }).catch(function(error) {
+        window.alert("Error occurred. Account not deleted");
+        });
     }
 
     render(){
         return(
             <div className = "container">
             <Header />
-        <header class="masthead">
+                    <header class="masthead">
             <div class="container h-100">
             <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
             Student Scheduler Online
           </h1>
-          <p className="lead">Reset Your Password</p>
+          <p className="lead">Delete Your Account</p>
           <div className="form-group">
             <input className="form-control" placeholder="Email" name="email" type="email" onChange={this.handleChange} value={this.state.email}></input>
           </div>
           <div className="form-group">
+            <input className="form-control" placeholder="Password" name="password" type="password" onChange={this.handleChange} value={this.state.password}></input>
+          </div>
+          <div className="form-group">
             {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
-            <button className="btn btn-primary rounded-pill px-5">Submit</button>
+            <button className="btn btn-primary rounded-pill px-5">Delete</button>
             <br></br>
-            <Link to={'/Login'}>Return to Sign in</Link>
+            <Link to={'/Login'}>Return to Login</Link>
             </div>
             </form>
             </div>
