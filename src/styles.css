@@ -471,7 +471,7 @@ mark,
   color: #6c757d;
 }
 .blockquote-footer::before {
-  content: "— ";
+  content: "— ";
 }
 
 .img-fluid {
@@ -10310,12 +10310,24 @@ background:white;
 .yellow{
   background-color: var(--yellow);
 }
-<<<<<<< HEAD
 
 .green
 {
   background-color: var(--green);
 }
+.red{
+  background-color: var(--red);
+}
+.blue{
+  background-color: var(--blue);
+}
+.orange{
+  background-color: var(--orange);
+}
+.pink{
+  background-color: var(--pink);
+}
+.purple{
+  background-color: var(--purple);
+}
 
-=======
->>>>>>> 258b0fb63393d57eedde44cdd92dbb38dfc043de

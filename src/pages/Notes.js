@@ -6,10 +6,6 @@ import { auth, db } from "../services/firebase";
 export default class Notes extends Component {
   constructor() {
     super();
-<<<<<<< HEAD
-=======
-   
->>>>>>> 258b0fb63393d57eedde44cdd92dbb38dfc043de
     this.state = {
       user: auth().currentUser,
       notes: [],
@@ -19,11 +15,7 @@ export default class Notes extends Component {
       note: {},
  
     };
-<<<<<<< HEAD
     this.handleChangeColour = this.handleChangeColour.bind(this);   
-=======
-    this.HandleChangeColour = this.HandleChangeColour.bind(this);
->>>>>>> 258b0fb63393d57eedde44cdd92dbb38dfc043de
     this.handleChangeModule = this.handleChangeModule.bind(this);
     this.handleChangeContent = this.handleChangeContent.bind(this);
     this.createnote = this.createnote.bind(this);
@@ -120,20 +112,7 @@ export default class Notes extends Component {
        
         {this.state.notes.map(note => {
           return (
-<<<<<<< HEAD
             <div key={note.note_id} className={"card card-body m-2 "+(note.colour)} >
-=======
-            <div key={note.note_id} className="card card-body  m-2" >
-              <select onChange={this.HandleChangeColour}>
-            <option data-isd="1" value="red">Red</option>
-            <option data-isd="2" value="orange">Orange</option>
-            <option data-isd="3" value="yellow">Yellow</option>
-            <option data-isd="4" value="green">Green</option>
-            <option data-isd="5" value="blue">Blue</option>
-            <option data-isd="6" value="pink">Pink</option>
-            <option data-isd="7" value="purple">Purple</option>
-          </select>
->>>>>>> 258b0fb63393d57eedde44cdd92dbb38dfc043de
                <p>{note.module }</p>
                <p>{note.content}</p>
                
