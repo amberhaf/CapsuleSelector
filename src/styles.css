@@ -10306,10 +10306,13 @@ background:white;
 .back{
   width: 5%;
 }
-<<<<<<< HEAD
-=======
 
-.jkj{
+.yellow{
   background-color: var(--yellow);
 }
->>>>>>> ef509ca1d70e9cd662ebf79bfb6f02c90a00a96c
+
+.green
+{
+  background-color: var(--green);
+}
+

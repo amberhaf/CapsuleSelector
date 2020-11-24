@@ -6,17 +6,16 @@ import { auth, db } from "../services/firebase";
 export default class Notes extends Component {
   constructor() {
     super();
-    this.HandleChangeColour = this.HandleChangeColour.bind(this);
     this.state = {
       user: auth().currentUser,
       notes: [],
       module: "",
       content: "",
+      colour: "",
       note: {},
-
-      
+ 
     };
-   
+    this.handleChangeColour = this.handleChangeColour.bind(this);   
     this.handleChangeModule = this.handleChangeModule.bind(this);
     this.handleChangeContent = this.handleChangeContent.bind(this);
     this.createnote = this.createnote.bind(this);
@@ -33,11 +32,10 @@ export default class Notes extends Component {
       this.setState({ notes: allnote });
     });
   }
-    HandleChangeColour=(e)=>{
-    let idx=e.target.selectedIndex;
-    let dataset=e.target.options[idx].dataset;
-    console.log(dataset.isd);
-
+    HandleChangeColour(e){
+      this.setState({
+        colour: e.target.value
+      })
   }
 
   handleChangeModule(e) {
@@ -50,10 +48,14 @@ export default class Notes extends Component {
       content: e.target.value
     });
   }
+  handleChangeColour(e) {
+    this.setState({colour: e.target.value });
+  }
   createnote() {
     const uid = this.state.user.uid;
     const { module } = this.state;
     const { content } = this.state;
+    const { colour } = this.state;
     const note = this.state.note;
     if (note && note.module) {
       return db
@@ -61,10 +63,11 @@ export default class Notes extends Component {
         .update({
           module,
           content,
+          colour,          
           uid
         })
         .then(_ => {
-          this.setState({ module: "", content: "", note: {} });
+          this.setState({ module: "", content: "", colour: "", note: {} });
         })
         .catch(error => console.log(error.message));
     }
@@ -73,11 +76,12 @@ export default class Notes extends Component {
       .set({
         module,
         content,
+        colour,
         note_id,
         uid
       })
       .then(_ => {
-        this.setState({ module: "", content: "", note: {} });
+        this.setState({ module: "", content: "", colour: "", note: {} });
       })
       .catch(error => console.log(error.message));
   }
@@ -89,7 +93,8 @@ export default class Notes extends Component {
         this.setState({
           note: snapshot.val(),
           module: snapshot.val().module,
-          content: snapshot.val().content
+          content: snapshot.val().content,
+          colour: snapshot.val().colour
         });
       });
   }
@@ -107,24 +112,10 @@ export default class Notes extends Component {
        
         {this.state.notes.map(note => {
           return (
-<<<<<<< HEAD
-            <div key={note.note_id} className="card card-body  m-2" >
-              <select onChange={this.HandleChangeColour}>
-            <option data-isd="1" value="red">Red</option>
-            <option data-isd="2" value="orange">Orange</option>
-            <option data-isd="3" value="yellow">Yellow</option>
-            <option data-isd="4" value="green">Green</option>
-            <option data-isd="5" value="blue">Blue</option>
-            <option data-isd="6" value="pink">Pink</option>
-            <option data-isd="7" value="purple">Purple</option>
-          </select>
+            <div key={note.note_id} className={"card card-body m-2 "+(note.colour)} >
                <p>{note.module }</p>
-=======
-            <div key={note.note_id} className={"card card-body m-2 "+(note.module)} >
-               <p>{note.module}</p>
->>>>>>> ef509ca1d70e9cd662ebf79bfb6f02c90a00a96c
                <p>{note.content}</p>
-
+               
               <button
                 className="btn1  text-info"
                 onClick={() => this.editnote(note.note_id)}
@@ -157,6 +148,15 @@ export default class Notes extends Component {
               cols="30"
               rows="8"
               />
+          <select value={this.state.value} onChange= {this.handleChangeColour}>
+            <option data-isd="1" value="red">Red</option>
+            <option data-isd="2" value="orange">Orange</option>
+            <option data-isd="3" value="yellow">Yellow</option>
+            <option data-isd="4" value="green">Green</option>
+            <option data-isd="5" value="blue">Blue</option>
+            <option data-isd="6" value="pink">Pink</option>
+            <option data-isd="7" value="purple">Purple</option>
+          </select>
           <button className="btn btn-success mt-3" onClick={this.createnote}>
             Create a new note
           </button>
