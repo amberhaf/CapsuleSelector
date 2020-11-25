@@ -117,8 +117,8 @@ export default class Notes extends Component {
     return (
       <div>
         <Header />
-      <section class="page-section bg-primary">
-      <div class="container">
+      <section className="page-section bg-primary">
+      <div className="container">
         <h2> Notes </h2>
        
         {this.state.notes.map(note => {
