@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth, db } from "../services/firebase";
-
+import Footer from "../components/Footer";
 
 export default class Notes extends Component {
   constructor() {

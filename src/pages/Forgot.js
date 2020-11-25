@@ -31,7 +31,7 @@ export class Forgot extends Component {
 
     render(){
         return(
-            <div className = "container">
+            <div>
             <Header />
         <header class="masthead">
             <div class="container h-100">
