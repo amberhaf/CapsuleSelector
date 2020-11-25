@@ -101,13 +101,24 @@ export default class Notes extends Component {
 
   deletenote(note_id) {
     db.ref(`all_note/${this.state.user.uid}/${note_id}`).remove();
+    db.ref(`all_note/${this.state.user.uid}/${note_id}`)
+    .once("value")
+    .then(snapshot => {
+      this.setState({
+        note:"",
+        noteTitle: "",
+        content: "",
+        colour: ""
+      });
+    });
   }
 
   render() {
     return (
-      <section class="page-section bg-primary">
-      <div class="container">
+      <div>
         <Header />
+      <section className="page-section bg-primary">
+      <div className="container">
         <h2> Notes </h2>
        
         {this.state.notes.map(note => {
@@ -164,6 +175,8 @@ export default class Notes extends Component {
         </div>
       </div>
       </section>
+      <Footer />
+      </div>
     );
   }
 }

@@ -9680,6 +9680,11 @@ button.bg-dark:focus {
 
 .text-center {
   text-align: center !important;
+  font-size: large;
+}
+.Head {
+  text-align: center !important;
+  font-size: xx-large;
 }
 
 @media (min-width: 576px) {
@@ -10275,9 +10280,6 @@ width: 400px;
 padding: 70px 19px;
 line-height: 18px; 
 text-align: center;
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-   sans-serif;
     
 }
 
