@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { auth, /*db*/ } from "../services/firebase";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 export default class Profile extends Component {

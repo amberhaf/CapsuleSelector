@@ -130,6 +130,7 @@ export default class Notes extends Component {
               <button
                 className="btn1  text-info"
                 onClick={() => this.editnote(note.note_id)}
+                
               >
                 Edit
               </button>
@@ -169,7 +170,7 @@ export default class Notes extends Component {
             <option data-isd="6" value="pink">Pink</option>
             <option data-isd="7" value="purple">Purple</option>
           </select>
-          <button className="btn btn-success mt-3" onClick={this.createnote}>
+          <button id="1" className="btn btn-success mt-3" onClick={this.createnote}>
             Create a new note
           </button>
         </div>
