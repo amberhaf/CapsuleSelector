@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../components/HeaderTime&Assign";
+import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import Dashboard from "./dashboard";
 const Deadlines = () => (
@@ -10,6 +11,7 @@ const Deadlines = () => (
   <Dashboard module={false}/>
   </div>
    </section>
+   <Footer />
    </div>
 );
 
