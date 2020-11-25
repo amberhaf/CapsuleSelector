@@ -17,7 +17,7 @@ const Resources = () => (
         </div>
         <div className="col text-center">
             <div className="mt-5">
-            <a target="_blank" href="https://www.maynoothuniversity.ie/moodle"><img className="Moodlebut" type="image" src="../Image/moodle.png" alt="Moodle"/></a>             <h3 className="h4 mb-2">Moodle</h3>
+            <a target="_blank" href="https://able.moodle.maynoothuniversity.ie/login/index.php"><img className="Moodlebut" type="image" src="../Image/moodle.png" alt="Moodle"/></a>             <h3 className="h4 mb-2">Moodle</h3>
             </div>
         </div>
       </div>
