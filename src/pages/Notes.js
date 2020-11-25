@@ -101,6 +101,16 @@ export default class Notes extends Component {
 
   deletenote(note_id) {
     db.ref(`all_note/${this.state.user.uid}/${note_id}`).remove();
+    db.ref(`all_note/${this.state.user.uid}/${note_id}`)
+    .once("value")
+    .then(snapshot => {
+      this.setState({
+        note:"",
+        noteTitle: "",
+        content: "",
+        colour: ""
+      });
+    });
   }
 
   render() {

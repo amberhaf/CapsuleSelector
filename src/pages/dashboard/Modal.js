@@ -81,11 +81,14 @@ export default class Modal extends React.Component {
             <option value="Meeting">Exam</option>
           </select>
         </label>: ''}
-          {'deadline' in this.state.event ? <TextField
-            defaultValue={this.state.event.due}
-            floatingLabelText="Due date"
-            onChange={(event, newValue) => this.setState({event: {...this.state.event, due: newValue}})}
-          /> : ''}
+          {'deadline' in this.state.event ? 
+             <label>
+             Complete:
+              <select value={this.state.event.due}  onChange= {(event, value) => this.setState({event: {...this.state.event, due:  event.target.value}})}>
+              <option value="no">No</option>
+             <option value="yes">Yes</option>
+           </select>
+          </label>: ''}
           {(!('deadline' in this.state.event)&&(this.state.event.family.length===0))? 
              <label>
              Repeat for:
