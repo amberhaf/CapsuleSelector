@@ -105,9 +105,10 @@ export default class Notes extends Component {
 
   render() {
     return (
+      <div>
+        <Header />
       <section class="page-section bg-primary">
       <div class="container">
-        <Header />
         <h2> Notes </h2>
        
         {this.state.notes.map(note => {
@@ -164,6 +165,8 @@ export default class Notes extends Component {
         </div>
       </div>
       </section>
+      <Footer />
+      </div>
     );
   }
 }

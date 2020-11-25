@@ -35,8 +35,8 @@ export default class Login extends Component {
     return (
       <div>
         <Header />
-        <header class="masthead">
-            <div class="container h-100">
+        <header className="masthead">
+            <div className="container h-100">
         <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
             Student Scheduler Online
