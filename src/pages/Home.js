@@ -9,7 +9,7 @@ export default class HomePage extends Component {
         <Header />
 <section className="page-section bg-primary">
       <div className="container">
-          <h2 className="text-center mt-0">Student Scheduler</h2>
+          <h2 className="Head">Student Scheduler</h2>
         <p className="text-center mt-0">Welcome to your personalised scheduler.<br></br>
           Here you can customise your timetable,<br></br>
           keep track of your assignments and access<br></br>

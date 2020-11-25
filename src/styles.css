@@ -9680,6 +9680,11 @@ button.bg-dark:focus {
 
 .text-center {
   text-align: center !important;
+  font-size: large;
+}
+.Head {
+  text-align: center !important;
+  font-size: xx-large;
 }
 
 @media (min-width: 576px) {
