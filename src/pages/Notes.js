@@ -57,7 +57,7 @@ export default class Notes extends Component {
     const { content } = this.state;
     const { colour } = this.state;
     const note = this.state.note;
-    if (note && note.noteTitle) {
+    if (note && note.noteTitle && note.content) {
       return db
         .ref(`all_note/${uid}/${note.note_id}`)
         .update({
