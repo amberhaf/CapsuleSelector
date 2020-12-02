@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Header from "../components/HeaderTime&Assign";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
 import Dashboard from "./dashboard";
 const Deadlines = () => (
   <div>

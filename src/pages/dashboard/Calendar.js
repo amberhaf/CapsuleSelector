@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
-import { datab } from '../../services/firebase'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
@@ -27,9 +25,6 @@ import {
 import './styles/dragAndDrop.css'
 //import './styles/less.css'
 import './styles/react-big-calendar.css'
-import Events from 'material-ui/utils/events'
-
-
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 
 const DragAndDropCalendar = withDragAndDrop(BigCalendar, {backend: false})
@@ -93,7 +88,7 @@ class Dnd extends Component {
 
       for(var i=0; i<family.length; i++)
       {
-        var id=event.family[i];
+         id=event.family[i];
          nextEvents.splice(idx, 1, updatedEvent)
       UpdateEvents(id).update({start, end, family}).then(
         this.setState({
@@ -110,12 +105,12 @@ class Dnd extends Component {
     }
     else {
       var rep=event.repeat;
-      for(var i=0; i<rep; i++)
+      for( i=0; i<rep; i++)
       {
         const newEventId=uuidV4();
         family[i]= newEventId;
       }
-      for(var i=0; i<family.length; i++)
+      for( i=0; i<family.length; i++)
       {
         const newEventId=family[i];
         updatedEvent = {...event, start, end, family}
@@ -279,7 +274,7 @@ class Dnd extends Component {
     var event=[];
     for(var j=0; j<events.length; j++)
     {
-      if(events[j].id==id)
+      if(events[j].id===id)
       {
         event=events[j];
       }
@@ -368,31 +363,31 @@ class Dnd extends Component {
   eventStyleGetter = (event, start, end, isSelected) => {
     console.log(event);
     var backgroundColor='#FF0000';
-    if(event.colour=="red")
+    if(event.colour==="red")
     {
       backgroundColor='#FF0000';
     }
-    if(event.colour=="orange")
+    if(event.colour==="orange")
     {
       backgroundColor='#FFA500';
     }
-    if(event.colour=="yellow")
+    if(event.colour==="yellow")
     {
       backgroundColor='#FFFF00';
     }
-    if(event.colour=="green")
+    if(event.colour==="green")
     {
       backgroundColor='#008000';
     }
-    if(event.colour=="blue")
+    if(event.colour==="blue")
     {
       backgroundColor='#0000ff';
     }
-    if(event.colour=="pink")
+    if(event.colour==="pink")
     {
       backgroundColor='#FFC0CB';
     }
-    if(event.colour=="purple")
+    if(event.colour==="purple")
     {
       backgroundColor='#800080';
     }

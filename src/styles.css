@@ -11,6 +11,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+  --pastelBlue: #5dbcd2;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -10256,7 +10257,7 @@ option[value="green"]
 }
 option[value="blue"]
 {
-  background-color:blue;
+  background-color:var(--pastelBlue);
 }
 option[value="pink"]
 {
@@ -10317,7 +10318,7 @@ text-align: center;
   background-color: var(--red);
 }
 .blue{
-  background-color: var(--blue);
+  background-color: var(--pastelBlue);
 }
 .orange{
   background-color: var(--orange);
