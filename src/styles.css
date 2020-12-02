@@ -9681,7 +9681,6 @@ button.bg-dark:focus {
 
 .text-center {
   text-align: center !important;
-  font-size: large;
 }
 .Head {
   text-align: center !important;
@@ -10339,6 +10338,6 @@ text-align: center;
   border-color: #5dbcd2;
   width: 250px;
   margin-left: 50px;
- vertical-align: 1px;
+  vertical-align: 1px;
 }
 

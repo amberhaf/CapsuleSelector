@@ -7,7 +7,7 @@ const Resources = () => (
   <Header />
 <section className="page-section bg-primary">
 <div className="container">
-    <h2 className="text-center mt-0">Resources</h2>
+    <h2 className="text-center">Resources</h2>
     <div className="row">
         <div className="col text-center">
             <div className="mt-5">
