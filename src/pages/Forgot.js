@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { resetPassword } from '../helpers/auth';
 import { Link } from 'react-router-dom';
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 export class Forgot extends Component {
 
     constructor() {
