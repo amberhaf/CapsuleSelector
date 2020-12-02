@@ -10,11 +10,11 @@ export default class HomePage extends Component {
 <section className="page-section bg-primary">
       <div className="container">
           <h2 className="Head">Student Scheduler</h2>
-        <p className="text-center mt-0">Welcome to your personalised scheduler.<br></br>
+        <h5 className="text-center mt-0">Welcome to your personalised scheduler.<br></br>
           Here you can customise your timetable,<br></br>
           keep track of your assignments and access<br></br>
           a range of resources.
-        </p>
+        </h5>
           <div className="row">
               <div className="col-md-6 col-lg-4 mb-5 text-center">
                   <div className="mt-5">

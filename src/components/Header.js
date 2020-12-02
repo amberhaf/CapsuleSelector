@@ -4,21 +4,21 @@ import { auth } from "../services/firebase";
 
 function Header() {
   return (
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container"> <Link className="navbar-brand" to="/">
+    <nav className="background navbar navbar-expand-lg fixed-top py-3" id="mainNav">
+    <div className="container"> <Link className="navbar-brand" to="/">
           Home
         </Link>
 
-        <div class="container">
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div className="container">
+               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
+                <div className="collapse navbar-collapse" id="navbarResponsive">
           {auth().currentUser ? (
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-              <li class="nav-item">
+                <ul className="navbar-nav ml-auto my-2 my-lg-0">
+              <li className="nav-item">
               <Link className="navbar-brand" to="/profile">
                 Settings
         </Link></li>
-              <li class="nav-item"><button
+              <li className="nav-item"><button
                 className="btn btn-secondary"
                 onClick={() => auth().signOut()}
               >
@@ -26,12 +26,12 @@ function Header() {
               </button></li>
               </ul>
           ) : (
-            <ul class="navbar-nav ml-auto my-2 my-lg-0">
-              <li class="nav-item">
+            <ul className="navbar-nav ml-auto my-2 my-lg-0">
+              <li className="nav-item">
               <Link className="navbar-brand" to="/login">
               Sign In
               </Link></li>
-              <li class="nav-item">
+              <li className="nav-item">
               <Link className="navbar-brand" to="/signup">
               Sign Up
               </Link></li>
