@@ -4,7 +4,7 @@ import { auth } from "../services/firebase";
 
 function Header() {
   return (
-    <nav className="background navbar navbar-expand-lg fixed-top py-3" id="mainNav">
+    <nav className="background navbar-light navbar navbar-expand-lg fixed-top py-3" id="mainNav">
     <div className="container"> <Link className="navbar-brand" to="/">
           Home
         </Link>
