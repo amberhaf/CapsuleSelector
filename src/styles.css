@@ -11,6 +11,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+  --lightPurple:#D59CD9;
+  --lightPink:#FFB6EE;
+  --lightGreen:#90ee90;
+  --lightRed:#FF6E6B;
   --pastelBlue: #5dbcd2;
   --blue: #007bff;
   --indigo: #6610f2;
@@ -10252,7 +10256,7 @@ option[value="yellow"]
 }
 option[value="green"]
 {
-  background-color:green;
+  background-color:var(--lightGreen);
 }
 option[value="blue"]
 {
@@ -10260,11 +10264,11 @@ option[value="blue"]
 }
 option[value="pink"]
 {
-  background-color:pink;
+  background-color:lightpink;
 }
 option[value="purple"]
 {
-  background-color:purple;
+  background-color:var(--lightPurple);
 }
 
 .form-control
@@ -10311,10 +10315,10 @@ text-align: center;
 
 .green
 {
-  background-color: var(--green);
+  background-color: var(--lightGreen);
 }
 .red{
-  background-color: var(--red);
+  background-color: var(--lightRed);
 }
 .blue{
   background-color: var(--pastelBlue);
@@ -10323,10 +10327,10 @@ text-align: center;
   background-color: var(--orange);
 }
 .pink{
-  background-color: var(--pink);
+  background-color: var(--lightPink);
 }
 .purple{
-  background-color: var(--purple);
+  background-color: var(--lightPurple);
 }
 .colDrop{
   margin-left: 20px;
