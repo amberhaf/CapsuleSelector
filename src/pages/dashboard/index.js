@@ -5,7 +5,6 @@ import { ProfilerConsumer } from '../../context/profileContext'
 import { auth } from '../../services/firebase';
 import Calendar from './Calendar'
 
-
 class Dashboard extends Component {
   constructor() {
     super();
@@ -19,6 +18,8 @@ class Dashboard extends Component {
         {context => {
             return (
               <div className="calendar text-center col">
+                {/*Passing user props to calendar component*/}
+                {/*Passing whether we want module or assignment information*/}
                <Calendar uid={this.state.user.uid} module={this.props.module}/> 
               </div>
             )

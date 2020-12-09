@@ -163,6 +163,7 @@ export default class Notes extends Component {
           <select className="colDrop" value={this.state.colour} onChange= {this.handleChangeColour}>
           <option data-isd="1" value="">White</option>
             <option data-isd="1" value="red">Red</option>
+            <option data-isd="2" value="orange">Orange</option>
             <option data-isd="3" value="yellow">Yellow</option>
             <option data-isd="4" value="green">Green</option>
             <option data-isd="5" value="blue">Blue</option>

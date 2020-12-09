@@ -15,7 +15,8 @@
   --lightPink:#FFB6EE;
   --lightGreen:#90ee90;
   --lightRed:#FF6E6B;
-  --pastelBlue: #5dbcd2;
+  --pastelBlue: #5dbcd2;  
+  --lightYellow: #FDFD96;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -10310,7 +10311,7 @@ text-align: center;
 }
 
 .yellow{
-  background-color: var(--yellow);
+  background-color: var(--lightYellow);
 }
 
 .green

@@ -23,17 +23,14 @@ import {
 } from "../../helpers/db";
 //Styles
 import './styles/dragAndDrop.css'
-//import './styles/less.css'
 import './styles/react-big-calendar.css'
-BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
+BigCalendar.momentLocalizer(moment);
 
 const DragAndDropCalendar = withDragAndDrop(BigCalendar, {backend: false})
 
 class Dnd extends Component {
-
   constructor(props) {
     super(props)
-
     this.state = calendarInitialState
     this.moveEvent = this.moveEvent.bind(this)
   }
@@ -43,7 +40,7 @@ class Dnd extends Component {
     const newModules = []
     const newAssignment = []
 
-  
+    //get either assignment or module event depending on what page we're on
     GetEventsSpecific(this.props.uid, this.props.module).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newEvents.push(doc.data())
@@ -52,7 +49,7 @@ class Dnd extends Component {
         })
       });
     })
-
+    //get modules 
     GetModules(this.props.uid).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newModules.push(doc.data())
@@ -61,6 +58,7 @@ class Dnd extends Component {
         })
       });
     })
+    //get assignments 
     GetAssignment(this.props.uid).then(querySnapshot => {
       querySnapshot.forEach(doc => {
         newAssignment.push(doc.data())
@@ -70,7 +68,7 @@ class Dnd extends Component {
       });
     })
   }
-
+  //move events and all related events
   moveEvent({event, start, end}) {
     const {events} = this.state
     const idx = events.indexOf(event)
@@ -79,6 +77,7 @@ class Dnd extends Component {
     var family =[]
     let updatedEvent = {...event, start, end}
     const nextEvents = [...events]
+    //if event exists move events and related events
       if (idx > -1) {
         family=event.family;
         var id=family[0];
@@ -103,6 +102,7 @@ class Dnd extends Component {
       end = new Date(end);
       }
     }
+    //if event does not exist create event and related events
     else {
       var rep=event.repeat;
       for( i=0; i<rep; i++)
@@ -127,7 +127,6 @@ class Dnd extends Component {
         start = new Date(start);
         end=end.setDate(end.getDate() + 7);
         end = new Date(end);
-
       }
     }
     const newEvents = []
@@ -144,7 +143,7 @@ class Dnd extends Component {
   selectEvent = (event) => {
     this.handleOpen(event)
   }
-
+  //resize event and all related events
   resizeEvent = (resizeType, {event, start, end}) => {
     const {events} = this.state
     var family=event.family;
@@ -164,7 +163,7 @@ class Dnd extends Component {
     });
     start=new Date(start.setDate(start.getDate() - (index*7)));
     end=new Date(end.setDate(end.getDate() - (index*7)));
-    
+
     for(var i=0; i<family.length; i++)
     {
       id=family[i];
@@ -190,7 +189,7 @@ class Dnd extends Component {
       });
     })
   }
-
+  //create new module
   createModule = ({title, code, link, type, repeat, colour}) => {
     const {modules} = this.state
     const newModuleId = uuidV4()
@@ -205,6 +204,7 @@ class Dnd extends Component {
       console.error('Create New Module error', error);
     });
   }
+  //create new assignment
   createAssignment = ({title, code, link, type, deadline, due, colour}) => {
     const {assignment} = this.state
     const newAssignmentId = uuidV4()
@@ -219,6 +219,7 @@ class Dnd extends Component {
       console.error('Create New Assignment error', error);
     });
   }
+  //edit event (not related events)
   editEvent = ({id, title, code, link, type, due, repeat, colour}) => {
     const {events} = this.state
 
@@ -268,6 +269,7 @@ class Dnd extends Component {
       console.error('Update Module error', error);
     });
   }
+  //delete all related events
   deleteEvent = ({id}) => {
     const {events} = this.state
     var family=[]
@@ -334,6 +336,7 @@ class Dnd extends Component {
       console.error('Delete error', error);
     });
   }
+  //handles whether the module should open or close
   handleClose = () => {
     this.setState({
       modalOpen: false,
@@ -360,6 +363,7 @@ class Dnd extends Component {
       assignmentOpen: true
     });
   }
+  //colour codes events
   eventStyleGetter = (event, start, end, isSelected) => {
     console.log(event);
     var backgroundColor='#FF0000';
@@ -403,7 +407,7 @@ class Dnd extends Component {
       style: style
     };
   }
-
+  //renders calendar
   render() {
     if (this.state.events) {
       return (
@@ -426,7 +430,6 @@ class Dnd extends Component {
           <div style={{height: 500}}>
 
             <DragAndDropCalendar
-
               events={this.state.events}
               onEventDrop={this.moveEvent}
               resizable
@@ -489,7 +492,7 @@ class Dnd extends Component {
               </FloatingActionButton>
             </div>
             <Sidebar events={this.state.assignment}
-                     onClickEvent={this.handleAssignment}
+              onClickEvent={this.handleAssignment}
             />
           </div>
     }

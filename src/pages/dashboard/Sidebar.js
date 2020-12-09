@@ -1,11 +1,10 @@
 import React from 'react';
 import EventChip from './EventChip'
 
-
+//renders side bar with modules and assignments
 export default class Sidebar extends React.Component {
 
   render() {
-
     const eventList = !!this.props.events ? this.props.events.map((event) => {
       return (<EventChip
           event={event}

@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+//This provides the form that pops up when an event is clicked
 export default class Modal extends React.Component {
 
   constructor(props) {
@@ -33,6 +34,8 @@ export default class Modal extends React.Component {
     this.state.onRequestClose()
   }
 
+  //conditional rendering depending on whether the event is being created or edited
+  //conditional rendering depending on whether the event is a module or assignment
   render() {
     return (
       <form

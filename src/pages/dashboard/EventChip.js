@@ -5,7 +5,7 @@ import BigCalendar from 'react-big-calendar'
 import Chip from 'material-ui/Chip';
 
 
-/* drag sources */
+//implements drag and drop functionality
 let eventSource = {
   beginDrag(props) {
     return Object.assign({},

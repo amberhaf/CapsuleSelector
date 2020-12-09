@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 export default class Profile extends Component {
 
+//settings page
   render() {
     return (
       <div>
@@ -17,11 +18,13 @@ export default class Profile extends Component {
           </h1>
         </div>
         <div className = "settingButton">
+        {/*Link to change password*/}
         <Link to = "/Forgot"><Button variant="warning" size="lg" block>
           Change Password
         </Button></Link>
         <br></br>
         </div>
+        {/*Link to delete account*/}
         <Link to = "/DeleteAccount"><Button variant="danger" size="lg" block>
           Delete Account
         </Button></Link>

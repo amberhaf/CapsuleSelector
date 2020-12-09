@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../services/firebase";
 
+//navbar using bootstrap and authentication
 function Header() {
   return (
       <nav className="background navbar-light navbar navbar-expand-lg fixed-top py-3" id="mainNav">
