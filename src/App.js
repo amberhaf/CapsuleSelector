@@ -8,7 +8,7 @@ import Mapping from './pages/Map';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Dashboard from './pages/dashboard';
+import CalendarComponent from './pages/CalendarComponent';
 import Timetable from './pages/Timetable';
 import Deadlines from './pages/Deadlines';
 import Resources from './pages/Resources';
@@ -75,7 +75,7 @@ class App extends Component {
           <PrivateRoute path="/Timetable" authenticated={this.state.authenticated} component={Timetable}></PrivateRoute>
           <PrivateRoute path="/map" authenticated={this.state.authenticated} component={Mapping}></PrivateRoute>
           <PrivateRoute path="/resources" authenticated={this.state.authenticated} component={Resources}></PrivateRoute>
-          <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
+          <PrivateRoute path="/CalendarComponent" authenticated={this.state.authenticated} component={CalendarComponent}></PrivateRoute>
           <PrivateRoute path="/deadlines" authenticated={this.state.authenticated} component={Deadlines}></PrivateRoute>
 
           <Route exact path = "/forgot" component={Forgot}></Route>

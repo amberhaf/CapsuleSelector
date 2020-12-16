@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "../components/HeaderTime&Assign";
 import Footer from "../components/Footer";
-import Dashboard from "./dashboard";
+import CalendarComponent from "./CalendarComponent";
+{/*passes module false props into our calendar component so modules won't be shown*/}
 const Deadlines = () => (
   <div>
   <Header />
   <section className="page-section bg-primary">
   <div className="container color">
-  <Dashboard module={false}/>
+  <CalendarComponent module={false}/>
   </div>
    </section>
    <Footer />

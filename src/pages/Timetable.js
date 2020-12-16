@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "../components/HeaderTime&Assign.js";
 import Footer from "../components/Footer.js";
-import Dashboard from "./dashboard";
+import Dashboard from "./CalendarComponent";
+{/*passes module true props into our calendar component so only modules will be shown*/}
 const Timetable = () => (
   <div>
   <Header />
