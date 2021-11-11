@@ -1,37 +1,18 @@
-import React, { Component } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
-export default class Profile extends Component {
+import React from "react";
+import JobSearch from "../components/JobSearch";
 
-//settings page
+class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
   render() {
     return (
       <div>
-        <Header />
-        <section className="page-section bg-primary" id="about">
-        <div className="container">
-        <div id = "mx-4">
-          <h1 className="text-center">
-            Settings
-          </h1>
-        </div>
-        <div className = "settingButton">
-        {/*Link to change password*/}
-        <Link to = "/Forgot"><Button variant="warning" size="lg" block>
-          Change Password
-        </Button></Link>
-        <br></br>
-        </div>
-        {/*Link to delete account*/}
-        <Link to = "/DeleteAccount"><Button variant="danger" size="lg" block>
-          Delete Account
-        </Button></Link>
-        </div>
-  </section>
-  <Footer />
       </div>
     );
   }
 }
+export default Profile;

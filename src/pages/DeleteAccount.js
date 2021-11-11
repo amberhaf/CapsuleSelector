@@ -33,14 +33,15 @@ export class Delete extends Component {
 
     render(){
         return(
-            <div>
-            <Header />
-                    <header class="masthead">
-            <div class="container h-100">
+        <div>
+        <Header />
+        <header class="masthead">
+          <div class="container h-100">
             <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
-            Student Scheduler Online
+            Capsule Selector Online
           </h1>
+          {/* Delete Account Section */}
           <p className="lead">Delete Your Account</p>
           <div className="form-group">
             <input className="form-control" placeholder="Email" name="email" type="email" onChange={this.handleChange} value={this.state.email}></input>
@@ -55,9 +56,9 @@ export class Delete extends Component {
             <Link to={'/Login'}>Return to Login</Link>
             </div>
             </form>
-            </div>
+          </div>
         </header>
-            </div>
+        </div>
         )
     }
 }

@@ -41,8 +41,9 @@ export default class SignUp extends Component {
         <form className="mt-5 py-5 px-5" autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>
             Sign Up to
-          <Link className="title" to="/"> Student Scheduler</Link>
+          <Link className="title" to="/"> Capsule Selector</Link>
           </h1>
+          {/* Create an account */}
           <p className="lead">Fill in the form below to create an account.</p>
           <div className="form-group">
             <input className="form-control" placeholder="Email" name="email" type="email" onChange={this.handleChange} value={this.state.email}></input>
@@ -55,6 +56,7 @@ export default class SignUp extends Component {
             <button className="btn btn-primary rounded-pill px-5">Sign up</button>
           </div>
           <hr></hr>
+          {/* Switch to Login page */}
           <p>Already have an account? <Link to="/login">Login</Link></p>
         </form>
         </div>
